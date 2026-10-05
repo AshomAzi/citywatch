@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CityWatch - Civic Issue Reporting Platform</title>
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-logo">
+                <div class="brand-icon">
+                    <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                </div>
+                <span>CityWatch</span>
+            </a>
+
+            <!-- Desktop Search Input -->
+            <div class="header-search">
+                <div class="search-wrapper">
+                    <div class="search-icon-left">
+                        <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
+                    <input type="text" id="searchInput" placeholder="Search issues, locations..." class="search-input">
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <nav class="nav-links">
+                    <a href="#" class="nav-link active">Issues</a>
+                    <a href="#" class="nav-link">Directory</a>
+                    <a href="#" class="nav-link">Log In</a>
+                </nav>
+                <button class="btn-register desktop-only">Register</button>
+
+                <!-- Theme Switcher Button -->
+                <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle light/dark theme"
+                    title="Toggle theme">
+                    <!-- Sun Icon (visible in Dark Mode) -->
+                    <svg id="sunIcon" style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <!-- Moon Icon (visible in Light Mode) -->
+                    <svg id="moonIcon" style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobileMenuBtn" class="hamburger-btn" aria-label="Toggle navigation menu">
+                    <svg id="hamburgerIcon" style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg id="closeMenuIcon" style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation Menu -->
+        <div id="mobileNavMenu" class="mobile-nav-menu">
+            <nav class="mobile-nav-links">
+                <a href="#" class="mobile-nav-link active">Issues</a>
+                <a href="#" class="mobile-nav-link">Directory</a>
+                <a href="#" class="mobile-nav-link">Log In</a>
+                <button class="btn-register mobile-register-btn">Register</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+
+        <div class="mobile-search-container">
+            <div class="search-wrapper">
+                <div class="search-icon-left">
+                    <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                </div>
+                <input type="text" id="mobileSearchInput" placeholder="Search issues, locations..."
+                    class="mobile-search-input">
+            </div>
+        </div>
+
+        <section class="hero-section">
+            <div>
+                <span class="hero-subtitle">COMMUNITY PULSE</span>
+                <h1 class="hero-title">Issues near you</h1>
+                <p class="hero-description">See what your neighbors are reporting and help make a difference.</p>
+            </div>
+
+            <button id="openReportModalBtn" class="btn-report">
+                <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+                Report New Issue
+            </button>
+        </section>
+
+        <section class="toolbar-section">
+            <div class="status-tabs">
+                <button class="status-tab active" data-status="all">All</button>
+                <button class="status-tab" data-status="pending">Pending</button>
+                <button class="status-tab" data-status="in progress">In Progress</button>
+                <button class="status-tab" data-status="resolved">Resolved</button>
+            </div>
+
+            <div class="filter-dropdowns">
+                <div class="category-filter-group">
+                    <span class="filter-label">Category</span>
+                    <div class="select-wrapper">
+                        <select id="categoryFilter" class="custom-select">
+                            <option value="all">All categories</option>
+                            <option value="Roads">Roads</option>
+                            <option value="Water">Water</option>
+                            <option value="Waste">Waste</option>
+                            <option value="Parks">Power</option>
+                        </select>
+                        <div class="select-icon">
+                            <svg style="width: 1rem; height: 1rem;" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="cards-header-info">
+            <span id="issuesCount" class="issues-count">3 public issues</span>
+
+            <div class="sort-group">
+                <span>Sort:</span>
+                <select id="sortFilter" class="sort-select">
+                    <option value="recent">Most recent</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="issuesContainer" class="issues-list">
+
+            <!-- Issue Card 1 -->
+            <article class="issue-card" data-status="in progress" data-category="Roads" data-timestamp="1728140400">
+                <div class="photo-placeholder-bg">
+                    <div class="photo-icon-circle">
+                        <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <span class="photo-text">PHOTO PLACEHOLDER</span>
+                </div>
+
+                <div class="card-details">
+                    <div>
+                        <div class="card-badges-row">
+                            <div class="badge-group">
+                                <span class="badge-status in-progress">In Progress</span>
+                                <span class="badge-category">Roads</span>
+                            </div>
+                            <span class="time-ago">
+                                <svg style="width: 0.875rem; height: 0.875rem;" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                2 hours ago
+                            </span>
+                        </div>
+
+                        <h3 class="issue-title">Large pothole on Maple Avenue</h3>
+
+                        <div class="meta-info">
+                            <span class="meta-item">
+                                <svg style="width: 0.875rem; height: 0.875rem; color: var(--cityblue-500);" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                </svg>
+                                <span class="issue-location">Maple Ave & 4th Street</span>
+                            </span>
+                            <span class="meta-item">
+                                <svg style="width: 0.875rem; height: 0.875rem; color: var(--slate-400);" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                                Reported by Jordan Lee
+                            </span>
+                        </div>
+
+                        <p class="issue-description">A deep pothole is making this intersection difficult to navigate,
+                            especially for cyclists and evening commuters.</p>
+                    </div>
+
+                    <div class="card-footer">
+                        <button class="comments-btn">
+                            <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+                            12 comments
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Issue Card 2 -->
+            <article class="issue-card" data-status="pending" data-category="Water" data-timestamp="1728129600">
+                <div class="photo-placeholder-bg">
+                    <div class="photo-icon-circle">
+                        <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <span class="photo-text">PHOTO PLACEHOLDER</span>
+                </div>
+
+                <div class="card-details">
+                    <div>
+                        <div class="card-badges-row">
+                            <div class="badge-group">
+                                <span class="badge-status pending">Pending</span>
+                                <span class="badge-category">Water</span>
+                            </div>
+                            <span class="time-ago">
+                                <svg style="width: 0.875rem; height: 0.875rem;" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                5 hours ago
+                            </span>
+                        </div>
+
+                        <h3 class="issue-title">Water main leak near community garden</h3>
+
+                        <div class="meta-info">
+                            <span class="meta-item">
+                                <svg style="width: 0.875rem; height: 0.875rem; color: var(--cityblue-500);" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                </svg>
+                                <span class="issue-location">Riverside Community Garden</span>
+                            </span>
+                            <span class="meta-item">
+                                <svg style="width: 0.875rem; height: 0.875rem; color: var(--slate-400);" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                                Reported by Priya Shah
+                            </span>
+                        </div>
+
+                        <p class="issue-description">Water has been pooling along the footpath since early this morning.
+                            The area is becoming slippery for pedestrians.</p>
+                    </div>
+
+                    <div class="card-footer">
+                        <button class="comments-btn">
+                            <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+                            8 comments
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Issue Card 3 -->
+            <article class="issue-card" data-status="resolved" data-category="Waste" data-timestamp="1728054000">
+                <div class="photo-placeholder-bg">
+                    <div class="photo-icon-circle">
+                        <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                    </div>
+                    <span class="photo-text">PHOTO PLACEHOLDER</span>
+                </div>
+
+                <div class="card-details">
+                    <div>
+                        <div class="card-badges-row">
+                            <div class="badge-group">
+                                <span class="badge-status resolved">Resolved</span>
+                                <span class="badge-category">Waste</span>
+                            </div>
+                            <span class="time-ago">
+                                <svg style="width: 0.875rem; height: 0.875rem;" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Yesterday
+                            </span>
+                        </div>
+
+                        <h3 class="issue-title">Overflowing recycling bins at Central Park</h3>
+
+                        <div class="meta-info">
+                            <span class="meta-item">
+                                <svg style="width: 0.875rem; height: 0.875rem; color: var(--cityblue-500);" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                </svg>
+                                <span class="issue-location">Central Park, North Entrance</span>
+                            </span>
+                            <span class="meta-item">
+                                <svg style="width: 0.875rem; height: 0.875rem; color: var(--slate-400);" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                                Reported by Alex Morgan
+                            </span>
+                        </div>
+
+                        <p class="issue-description">The recycling bins were overflowing over the weekend. Thank you to
+                            the sanitation team for the quick cleanup.</p>
+                    </div>
+
+                    <div class="card-footer">
+                        <button class="comments-btn">
+                            <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" stroke-width="2"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                            </svg>
+                            5 comments
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <div id="noResults" class="no-results">
+            <div class="no-results-icon">
+                <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+            <h3 class="no-results-title">No issues found</h3>
+            <p class="no-results-desc">Try adjusting your filter or search query to find matching items.</p>
+        </div>
+    </main>
+
+    <div id="reportModal" class="modal-backdrop">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Report a Community Issue</h3>
+                <button id="closeReportModalBtn" class="modal-close-btn">
+                    <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <form id="issueUploadForm" action="#" method="POST" enctype="multipart/form-data" class="modal-form">
+                <div class="form-group">
+                    <label class="form-label">Issue Title</label>
+                    <input type="text" name="title" required placeholder="e.g. Broken street light, Pothole"
+                        class="form-input">
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select name="category" required class="form-select">
+                            <option value="Roads">Roads</option>
+                            <option value="Water">Water</option>
+                            <option value="Waste">Waste</option>
+                            <option value="Parks">Parks</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Location</label>
+                        <input type="text" name="location" required placeholder="Street address or landmark"
+                            class="form-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" rows="3" required
+                        placeholder="Provide details to help local teams fix the issue..."
+                        class="form-textarea"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Photo Upload</label>
+                    <div class="file-upload-box">
+                        <div class="upload-content">
+                            <svg class="upload-icon" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                <path
+                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <div style="font-size: 0.875rem; margin-top: 0.25rem;">
+                                <span style="font-weight: 500; color: var(--cityblue-600);">Upload a file</span> or drag
+                                and drop
+                            </div>
+                            <p style="font-size: 0.75rem; color: var(--slate-400); margin-top: 0.25rem;">PNG, JPG up to
+                                10MB</p>
+                        </div>
+                        <input id="file-upload" name="image" type="file" accept="image/*" class="file-input-hidden">
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancelReportModalBtn" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-submit">Submit Issue</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p><span style="font-weight: 700; color: var(--slate-200);">CityWatch</span> &middot; Better streets start
+                with speaking up.</p>
+            <p>&copy; 2025 CityWatch</p>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
