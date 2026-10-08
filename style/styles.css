@@ -17,6 +17,7 @@
     --cityblue-600: #0369a1;
     --cityblue-500: #0284c7;
     --cityblue-400: #38bdf8;
+    --cityblue-100: #e0f2fe;
     --cityblue-50: #f0f9ff;
 
     --amber-800: #92400e;
@@ -26,7 +27,9 @@
     --amber-50: #fffbeb;
 
     --emerald-800: #065f46;
+    --emerald-600: #059669;
     --emerald-100: #d1fae5;
+    --emerald-50: #ecfdf5;
 
     /* Theme Variable Defaults (Light Mode) */
     --bg-main: var(--slate-50);
@@ -95,6 +98,35 @@ textarea {
     font-size: inherit;
 }
 
+/* Utility Icon Sizing & Helper Classes */
+.icon-xs {
+    width: 0.875rem;
+    height: 0.875rem;
+}
+
+.icon-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+.icon-md {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.icon-lg {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.text-blue {
+    color: var(--cityblue-500);
+}
+
+.text-muted {
+    color: var(--slate-400);
+}
+
 .container {
     max-width: 72rem;
     margin: 0 auto;
@@ -103,6 +135,7 @@ textarea {
     width: 100%;
 }
 
+/* Header & Navigation */
 .site-header {
     background-color: var(--navy-800);
     color: var(--white);
@@ -271,25 +304,6 @@ textarea {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Theme Toggle Icon Visibility Logic */
-#sunIcon {
-    display: none;
-}
-
-#moonIcon {
-    display: block;
-}
-
-[data-theme="dark"] #sunIcon,
-body.dark-mode #sunIcon {
-    display: block;
-}
-
-[data-theme="dark"] #moonIcon,
-body.dark-mode #moonIcon {
-    display: none;
-}
-
 /* Hamburger & Mobile Menu Styles */
 .hamburger-btn {
     background: transparent;
@@ -360,7 +374,7 @@ body.dark-mode #moonIcon {
     margin-top: 0.5rem;
 }
 
-/* Main Content */
+/* Main Content Section */
 .main-content {
     flex-grow: 1;
     padding-top: 2rem;
@@ -634,7 +648,11 @@ body.dark-mode #moonIcon {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: box-shadow 0.2s, background-color 0.3s;
+    transition: box-shadow 0.2s, background-color 0.3s, border-color 0.2s;
+}
+
+.issue-card.high-impact {
+    border-left: 4px solid var(--cityblue-500);
 }
 
 @media (min-width: 768px) {
@@ -710,6 +728,7 @@ body.dark-mode #moonIcon {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .badge-status {
@@ -746,6 +765,27 @@ body.dark-mode #moonIcon {
     font-weight: 500;
     background-color: var(--bg-alt);
     color: var(--text-secondary);
+}
+
+/* High Impact / Community Verified Badge */
+.badge-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: var(--cityblue-50);
+    color: var(--cityblue-600);
+    border: 1px solid var(--cityblue-100);
+}
+
+[data-theme="dark"] .badge-verified,
+body.dark-mode .badge-verified {
+    background-color: rgba(3, 105, 161, 0.2);
+    color: var(--cityblue-400);
+    border-color: rgba(56, 189, 248, 0.3);
 }
 
 .time-ago {
@@ -803,13 +843,77 @@ body.dark-mode #moonIcon {
     justify-content: space-between;
     font-size: 0.75rem;
     font-weight: 600;
+}
+
+/* Upvote & Community Verification Styling */
+.upvote-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-alt);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.upvote-btn:hover {
+    border-color: var(--cityblue-500);
     color: var(--cityblue-500);
+    background-color: var(--bg-card);
+}
+
+.upvote-btn.upvoted {
+    background-color: var(--cityblue-500);
+    border-color: var(--cityblue-500);
+    color: var(--white);
+}
+
+.upvote-btn.upvoted:hover {
+    background-color: var(--cityblue-600);
+    border-color: var(--cityblue-600);
+}
+
+.upvote-count {
+    display: inline-block;
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-full);
+    background-color: rgba(0, 0, 0, 0.06);
+    font-weight: 700;
+}
+
+.upvote-btn.upvoted .upvote-count {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: var(--white);
+}
+
+/* Upvote Pulse Animation */
+@keyframes upvotePulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.upvote-btn.animate-pulse {
+    animation: upvotePulse 0.3s ease-in-out;
 }
 
 .comments-btn {
     background: none;
     border: none;
-    color: inherit;
+    color: var(--cityblue-500);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -857,10 +961,7 @@ body.dark-mode #moonIcon {
 /* Modal Styles */
 .modal-backdrop {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background-color: rgba(15, 23, 42, 0.65);
     backdrop-filter: blur(4px);
     z-index: 50;
@@ -882,7 +983,7 @@ body.dark-mode #moonIcon {
     background-color: var(--bg-card);
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-xl);
-    max-width: 32rem;
+    max-width: 34rem;
     width: 100%;
     overflow: hidden;
     display: flex;
@@ -954,6 +1055,12 @@ body.dark-mode #moonIcon {
     margin-bottom: 0.25rem;
 }
 
+.form-hint {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.375rem;
+}
+
 .form-input,
 .form-select,
 .form-textarea {
@@ -973,6 +1080,46 @@ body.dark-mode #moonIcon {
     outline: none;
     border-color: var(--cityblue-500);
     background-color: var(--bg-card);
+}
+
+/* Geolocation Form Field Additions */
+.location-input-group {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-detect-location {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.625rem 0.875rem;
+    background-color: var(--bg-alt);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-detect-location:hover {
+    background-color: var(--border-color);
+}
+
+.btn-detect-location:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.modal-map-container {
+    width: 100%;
+    height: 190px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-alt);
+    z-index: 1;
 }
 
 .file-upload-box {
@@ -1002,6 +1149,22 @@ body.dark-mode #moonIcon {
     height: 2.5rem;
     width: 2.5rem;
     color: var(--text-muted);
+}
+
+.upload-text-main {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.upload-link-text {
+    font-weight: 500;
+    color: var(--cityblue-600);
+}
+
+.upload-text-sub {
+    font-size: 0.75rem;
+    color: var(--slate-400);
+    margin-top: 0.25rem;
 }
 
 .file-input-hidden {
@@ -1071,6 +1234,11 @@ body.dark-mode #moonIcon {
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
+}
+
+.footer-brand {
+    font-weight: 700;
+    color: var(--slate-200);
 }
 
 @media (min-width: 640px) {

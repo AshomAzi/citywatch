@@ -109,7 +109,7 @@
             <div>
                 <span class="hero-subtitle">COMMUNITY PULSE</span>
                 <h1 class="hero-title">Issues near you</h1>
-                <p class="hero-description">See what your neighbors are reporting and help make a difference.</p>
+                <p class="hero-description">See what your neighbors are reporting and help authorities prioritize high-impact issues.</p>
             </div>
 
             <button id="openReportModalBtn" class="btn-report">
@@ -158,6 +158,7 @@
                 <span>Sort:</span>
                 <select id="sortFilter" class="sort-select">
                     <option value="recent">Most recent</option>
+                    <option value="upvotes">Most upvoted</option>
                     <option value="oldest">Oldest</option>
                 </select>
             </div>
@@ -166,7 +167,7 @@
         <div id="issuesContainer" class="issues-list">
 
             <!-- Issue Card 1 -->
-            <article class="issue-card" data-status="in progress" data-category="Roads" data-timestamp="1728140400">
+            <article class="issue-card" data-id="issue-1" data-status="in progress" data-category="Roads" data-timestamp="1728140400" data-upvotes="14">
                 <div class="photo-placeholder-bg">
                     <div class="photo-icon-circle">
                         <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
@@ -185,6 +186,12 @@
                             <div class="badge-group">
                                 <span class="badge-status in-progress">In Progress</span>
                                 <span class="badge-category">Roads</span>
+                                <span class="badge-verified" title="Confirmed by multiple community members">
+                                    <svg style="width: 0.75rem; height: 0.75rem;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    High Impact
+                                </span>
                             </div>
                             <span class="time-ago">
                                 <svg style="width: 0.875rem; height: 0.875rem;" fill="none" stroke="currentColor"
@@ -222,6 +229,15 @@
                     </div>
 
                     <div class="card-footer">
+                        <!-- Upvote / Verification Button -->
+                        <button class="upvote-btn" aria-label="Confirm this issue">
+                            <svg class="upvote-icon" style="width: 0.875rem; height: 0.875rem;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+                            </svg>
+                            <span class="upvote-label">I'm experiencing this too</span>
+                            <span class="upvote-count">14</span>
+                        </button>
+
                         <button class="comments-btn">
                             <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
@@ -235,7 +251,7 @@
             </article>
 
             <!-- Issue Card 2 -->
-            <article class="issue-card" data-status="pending" data-category="Water" data-timestamp="1728129600">
+            <article class="issue-card" data-id="issue-2" data-status="pending" data-category="Water" data-timestamp="1728129600" data-upvotes="6">
                 <div class="photo-placeholder-bg">
                     <div class="photo-icon-circle">
                         <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
@@ -254,6 +270,12 @@
                             <div class="badge-group">
                                 <span class="badge-status pending">Pending</span>
                                 <span class="badge-category">Water</span>
+                                <span class="badge-verified" style="display: none;" title="Confirmed by multiple community members">
+                                    <svg style="width: 0.75rem; height: 0.75rem;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    High Impact
+                                </span>
                             </div>
                             <span class="time-ago">
                                 <svg style="width: 0.875rem; height: 0.875rem;" fill="none" stroke="currentColor"
@@ -291,6 +313,15 @@
                     </div>
 
                     <div class="card-footer">
+                        <!-- Upvote / Verification Button -->
+                        <button class="upvote-btn" aria-label="Confirm this issue">
+                            <svg class="upvote-icon" style="width: 0.875rem; height: 0.875rem;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+                            </svg>
+                            <span class="upvote-label">I'm experiencing this too</span>
+                            <span class="upvote-count">6</span>
+                        </button>
+
                         <button class="comments-btn">
                             <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
@@ -304,7 +335,7 @@
             </article>
 
             <!-- Issue Card 3 -->
-            <article class="issue-card" data-status="resolved" data-category="Waste" data-timestamp="1728054000">
+            <article class="issue-card" data-id="issue-3" data-status="resolved" data-category="Waste" data-timestamp="1728054000" data-upvotes="22">
                 <div class="photo-placeholder-bg">
                     <div class="photo-icon-circle">
                         <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
@@ -323,6 +354,12 @@
                             <div class="badge-group">
                                 <span class="badge-status resolved">Resolved</span>
                                 <span class="badge-category">Waste</span>
+                                <span class="badge-verified" title="Confirmed by multiple community members">
+                                    <svg style="width: 0.75rem; height: 0.75rem;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    High Impact
+                                </span>
                             </div>
                             <span class="time-ago">
                                 <svg style="width: 0.875rem; height: 0.875rem;" fill="none" stroke="currentColor"
@@ -360,6 +397,15 @@
                     </div>
 
                     <div class="card-footer">
+                        <!-- Upvote / Verification Button -->
+                        <button class="upvote-btn" aria-label="Confirm this issue">
+                            <svg class="upvote-icon" style="width: 0.875rem; height: 0.875rem;" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+                            </svg>
+                            <span class="upvote-label">I'm experiencing this too</span>
+                            <span class="upvote-count">22</span>
+                        </button>
+
                         <button class="comments-btn">
                             <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
