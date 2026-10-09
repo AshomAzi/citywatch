@@ -73,6 +73,10 @@ body.dark-mode {
     padding: 0;
 }
 
+html {
+    scrollbar-gutter: stable;
+}
+
 body {
     font-family: var(--font-family);
     background-color: var(--bg-main);
@@ -463,6 +467,7 @@ textarea {
     padding: 0.75rem 1.25rem;
     border-radius: var(--radius-xl);
     border: none;
+    outline: none;
     cursor: pointer;
     box-shadow: var(--shadow-sm);
     transition: all 0.2s;

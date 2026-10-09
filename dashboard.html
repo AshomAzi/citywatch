@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CityWatch</title>
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="style/dashboard.css">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="index.html" class="brand-logo">
+                <div class="brand-icon">
+                    <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                </div>
+                <span>CityWatch</span>
+            </a>
+
+            <div class="header-actions">
+                <nav class="nav-links">
+                    <a href="dashboard.html" class="nav-link active">Dashboard</a>
+                    <a href="issues.html" class="nav-link">City Feed</a>
+                </nav>
+
+                <div class="user-profile-menu">
+                    <span class="user-name">Ashom Azi</span>
+                    <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle light/dark theme"
+                        title="Toggle theme">
+                        <svg id="sunIcon" style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        <svg id="moonIcon" style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+                    <a href="login.html" class="btn-logout desktop-only">Logout</a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobileMenuBtn" class="hamburger-btn" aria-label="Toggle navigation menu">
+                    <svg id="hamburgerIcon" style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg id="closeMenuIcon" style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation Menu -->
+        <div id="mobileNavMenu" class="mobile-nav-menu">
+            <nav class="mobile-nav-links">
+                <a href="dashboard.html" class="mobile-nav-link active">Dashboard</a>
+                <a href="issues.html" class="mobile-nav-link">City Feed</a>
+                <a href="login.html" class="mobile-nav-link">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard-wrapper container">
+
+        <!-- Welcome Header -->
+        <section class="dashboard-head">
+            <div>
+                <h1>User Dashboard</h1>
+                <p>Track your submitted reports, monitor resolution progress, and earn civic participation badges.</p>
+            </div>
+            <button id="openReportModalBtn" class="btn-report">
+                <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                </svg>
+                Report New Issue
+            </button>
+        </section>
+
+        <!-- Top Summary Panel: Community Impact Stats -->
+        <section class="impact-summary-panel">
+            <div class="panel-header">
+                <h3>Community Impact</h3>
+                <span class="impact-subtitle">City-wide performance overview</span>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-title">Total Issues Reported</span>
+                    <span class="stat-value" id="statTotalReported">1,248</span>
+                    <span class="stat-subtext text-muted">+12% from last month</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-title">Issues Resolved This Month</span>
+                    <span class="stat-value success" id="statResolvedMonth">184</span>
+                    <span class="stat-subtext text-success">&uarr; 94% clearance rate</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-title">Average Resolution Time</span>
+                    <span class="stat-value info" id="statAvgTime">3.2 Days</span>
+                    <span class="stat-subtext text-muted">Faster than 2025 avg (4.5d)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Dashboard Content Grid -->
+        <div class="dashboard-grid">
+
+            <!-- Left Column: User Profile Menu & Badges -->
+            <aside class="sidebar-col">
+                <!-- User Profile Card -->
+                <div class="content-card profile-card">
+                    <div class="profile-header">
+                        <div class="avatar">AA</div>
+                        <div class="profile-meta">
+                            <h4>Ashom Azi</h4>
+                            <span class="user-role">Verified Resident</span>
+                        </div>
+                    </div>
+
+                    <!-- Profile Navigation Menu -->
+                    <nav class="profile-nav">
+                        <a href="#my-reports" class="profile-nav-link active">
+                            <span>My Submitted Reports</span>
+                            <span class="counter-badge">12</span>
+                        </a>
+                        <a href="#saved-issues" class="profile-nav-link">
+                            <span>Saved Issues</span>
+                            <span class="counter-badge">4</span>
+                        </a>
+                        <a href="#upvoted-items" class="profile-nav-link">
+                            <span>Upvoted Items</span>
+                            <span class="counter-badge">45</span>
+                        </a>
+                        <a href="#badges" class="profile-nav-link">
+                            <span>Badges Earned</span>
+                            <span class="counter-badge highlight">3</span>
+                        </a>
+                    </nav>
+
+                    <hr class="card-divider">
+
+                    <!-- Civic Badges Section -->
+                    <div class="badges-section">
+                        <h4>Civic Badges Earned</h4>
+                        <div class="badges-grid">
+                            <div class="badge-item"
+                                title="Community Guardian: Awarded for active involvement in local safety & infrastructure.">
+                                <div class="badge-icon icon-guardian"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="1em" height="1em" viewBox="0 0 24 24">
+                                        <path d="M0 0h24v24H0z" fill="none" />
+                                        <path fill="currentColor"
+                                            d="M12 23q-4.65 0-7.825-1.737T1 17q0-1.725 1.6-3.162T7 11.65v2.05q-1.825.575-2.912 1.475T3 17q0 1.6 2.7 2.8T12 21t6.3-1.2T21 17q0-.925-1.088-1.825T17 13.7v-2.05q2.8.75 4.4 2.188T23 17q0 2.525-3.175 4.263T12 23m-3-4V8H4V6h16v2h-5v11h-2v-5h-2v5zm3-14q-.825 0-1.412-.587T10 3t.588-1.412T12 1t1.413.588T14 3t-.587 1.413T12 5" />
+                                    </svg>
+                                </div>
+                                <span class="badge-title">Community Guardian</span>
+                            </div>
+                            <div class="badge-item"
+                                title="Spotter Level 3: Reported more than 10 verified municipal issues.">
+                                <div class="badge-icon icon-spotter"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                                        height="1em" viewBox="0 0 1024 1024">
+                                        <path d="M0 0h1024v1024H0z" fill="none" />
+                                        <path fill="currentColor"
+                                            d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1S492.1 112 412 112s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6M570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4" />
+                                    </svg>
+                                </div>
+                                <span class="badge-title">Spotter Level 3</span>
+                            </div>
+                            <div class="badge-item"
+                                title="First Responder: Reported an urgent issue resolved within 24 hours.">
+                                <div class="badge-icon icon-responder"><svg xmlns="http://www.w3.org/2000/svg"
+                                        width="1em" height="1em" viewBox="0 0 24 24">
+                                        <path d="M0 0h24v24H0z" fill="none" />
+                                        <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                            stroke-linejoin="round" stroke-width="2.5">
+                                            <path fill="currentColor"
+                                                d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2H5a2 2 0 0 1 -2 -2Z"
+                                                opacity=".2" stroke="none" />
+                                            <path
+                                                d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2H5a2 2 0 0 1 -2 -2Z" />
+                                            <path d="M7 17v3l3 -3" />
+                                            <path d="m13 6 -3 3h3l-3 3" />
+                                        </g>
+                                    </svg>
+                                </div>
+                                <span class="badge-title">First Responder</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Right Column: Primary Reports List -->
+            <div class="main-content-col">
+                <div class="content-card">
+                    <div class="card-header">
+                        <h3>My Submitted Reports</h3>
+                        <div class="filter-controls">
+                            <select id="statusFilter" class="select-input">
+                                <option value="all">All Statuses</option>
+                                <option value="pending">Pending</option>
+                                <option value="dispatched">Dispatched to Crew</option>
+                                <option value="resolved">Resolved</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Issues List Container -->
+                    <div class="issues-list" id="issuesList">
+
+                        <!-- Issue Card 1 -->
+                        <div class="issue-item clickable-card" data-id="101"
+                            data-title="Broken Streetlight on Bauchi Road" data-category="Infrastructure"
+                            data-date="Oct 4, 2026" data-status="dispatched" data-status-text="Dispatched to Crew"
+                            data-step="3" data-location="Bauchi Road, Jos"
+                            data-description="Streetlight pole #42 flickering and unlit for past 3 days causing night safety concerns.">
+                            <div class="issue-main">
+                                <div class="issue-title-row">
+                                    <h4 class="issue-title">Broken Streetlight on Bauchi Road</h4>
+                                    <span class="badge badge-warning">Dispatched to Crew</span>
+                                </div>
+                                <p class="issue-meta">Submitted on Oct 4, 2026 &bull; Category: Infrastructure &bull; 14
+                                    Upvotes</p>
+                            </div>
+                            <div class="issue-actions">
+                                <button class="btn-sm btn-outline">View Details &rarr;</button>
+                            </div>
+                        </div>
+
+                        <!-- Issue Card 2 -->
+                        <div class="issue-item clickable-card" data-id="102"
+                            data-title="Deep Pothole Near Terminus Market" data-category="Roads"
+                            data-date="Sep 28, 2026" data-status="resolved" data-status-text="Resolved" data-step="4"
+                            data-location="Terminus Market Main Junction"
+                            data-description="Large pothole in center lane repaired by public works road crew. asphalt resurfacing complete.">
+                            <div class="issue-main">
+                                <div class="issue-title-row">
+                                    <h4 class="issue-title">Deep Pothole Near Terminus Market</h4>
+                                    <span class="badge badge-success">Resolved</span>
+                                </div>
+                                <p class="issue-meta">Submitted on Sep 28, 2026 &bull; Category: Roads &bull; 31 Upvotes
+                                </p>
+                            </div>
+                            <div class="issue-actions">
+                                <button class="btn-sm btn-outline">View Details &rarr;</button>
+                            </div>
+                        </div>
+
+                        <!-- Issue Card 3 -->
+                        <div class="issue-item clickable-card" data-id="103"
+                            data-title="Overflowing Waste Bin at Rayfield" data-category="Sanitation"
+                            data-date="Oct 7, 2026" data-status="pending" data-status-text="Submitted" data-step="1"
+                            data-location="Rayfield Public Park Gate 2"
+                            data-description="Communal waste bin overflowing into pedestrian walkway. Needs municipal collection crew.">
+                            <div class="issue-main">
+                                <div class="issue-title-row">
+                                    <h4 class="issue-title">Overflowing Waste Bin at Rayfield</h4>
+                                    <span class="badge badge-secondary">Submitted</span>
+                                </div>
+                                <p class="issue-meta">Submitted on Oct 7, 2026 &bull; Category: Sanitation &bull; 2
+                                    Upvotes</p>
+                            </div>
+                            <div class="issue-actions">
+                                <button class="btn-sm btn-outline">View Details &rarr;</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Side Drawer Modal for Detailed Progress Timeline -->
+    <div id="drawerBackdrop" class="drawer-backdrop"></div>
+    <aside id="detailDrawer" class="detail-drawer" aria-hidden="true">
+        <div class="drawer-header">
+            <div>
+                <span class="drawer-category" id="drawerCategory">Category</span>
+                <h3 id="drawerTitle">Issue Details</h3>
+            </div>
+            <button id="closeDrawerBtn" class="close-drawer-btn" aria-label="Close drawer">&times;</button>
+        </div>
+
+        <div class="drawer-body">
+            <div class="drawer-section">
+                <label class="drawer-label">Location</label>
+                <p id="drawerLocation" class="drawer-text">-</p>
+            </div>
+
+            <div class="drawer-section">
+                <label class="drawer-label">Description</label>
+                <p id="drawerDescription" class="drawer-text">-</p>
+            </div>
+
+            <hr class="card-divider">
+
+            <!-- Resolution Progress Timeline -->
+            <div class="drawer-section">
+                <label class="drawer-label">Resolution Timeline</label>
+
+                <div class="timeline">
+                    <!-- Step 1 -->
+                    <div class="timeline-item" id="timeStep1">
+                        <div class="timeline-marker">1</div>
+                        <div class="timeline-content">
+                            <h5>Submitted</h5>
+                            <p>Report received and logged into municipal database.</p>
+                            <span class="timeline-date" id="drawerSubmittedDate">Oct 4, 2026</span>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="timeline-item" id="timeStep2">
+                        <div class="timeline-marker">2</div>
+                        <div class="timeline-content">
+                            <h5>Under Review</h5>
+                            <p>Evaluated by department coordinator and prioritized.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="timeline-item" id="timeStep3">
+                        <div class="timeline-marker">3</div>
+                        <div class="timeline-content">
+                            <h5>Dispatched to Crew</h5>
+                            <p>Work order assigned to field repair team.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="timeline-item" id="timeStep4">
+                        <div class="timeline-marker">4</div>
+                        <div class="timeline-content">
+                            <h5>Resolved</h5>
+                            <p>Work completed and verified by site inspection.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="drawer-footer">
+            <button class="btn-submit-auth" id="closeDrawerFooterBtn">Close Panel</button>
+        </div>
+    </aside>
+
+    <!-- Report New Issue Modal (Matching index.html overlay) -->
+    <div id="reportModal" class="modal-backdrop">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>Report a Community Issue</h3>
+                <button id="closeReportModalBtn" class="modal-close-btn">
+                    <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <form id="issueUploadForm" action="#" method="POST" enctype="multipart/form-data" class="modal-form">
+                <div class="form-group">
+                    <label class="form-label">Issue Title</label>
+                    <input type="text" name="title" required placeholder="e.g. Broken street light, Pothole"
+                        class="form-input">
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <select name="category" required class="form-select">
+                            <option value="Roads">Roads</option>
+                            <option value="Water">Water</option>
+                            <option value="Waste">Waste</option>
+                            <option value="Parks">Parks</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Location</label>
+                        <input type="text" name="location" id="locationInput" required
+                            placeholder="Street address or landmark" class="form-input">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" rows="3" required
+                        placeholder="Provide details to help local teams fix the issue..."
+                        class="form-textarea"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Photo Upload</label>
+                    <div class="file-upload-box">
+                        <div class="upload-content">
+                            <svg class="upload-icon" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                <path
+                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <div style="font-size: 0.875rem; margin-top: 0.25rem;">
+                                <span style="font-weight: 500; color: var(--cityblue-600);">Upload a file</span> or drag
+                                and drop
+                            </div>
+                            <p style="font-size: 0.75rem; color: var(--slate-400); margin-top: 0.25rem;">PNG, JPG up to
+                                10MB</p>
+                        </div>
+                        <input id="file-upload" name="image" type="file" accept="image/*" class="file-input-hidden">
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancelReportModalBtn" class="btn-cancel">Cancel</button>
+                    <button type="submit" class="btn-submit">Submit Issue</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
