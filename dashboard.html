@@ -26,13 +26,17 @@
             </a>
 
             <div class="header-actions">
-                <nav class="nav-links">
+                <!-- Desktop Only Navigation Links -->
+                <nav class="nav-links desktop-only">
                     <a href="dashboard.html" class="nav-link active">Dashboard</a>
                     <a href="issues.html" class="nav-link">City Feed</a>
                 </nav>
 
                 <div class="user-profile-menu">
-                    <span class="user-name">Ashom Azi</span>
+                    <!-- User Avatar (Visible on both Desktop and Mobile) -->
+                    <img src="images/avatar-placeholder.png" alt="User Profile" class="user-avatar-img">
+
+                    <!-- Theme Toggle Icon (Visible on both Desktop and Mobile) -->
                     <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle light/dark theme"
                         title="Toggle theme">
                         <svg id="sunIcon" style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
@@ -46,10 +50,12 @@
                                 d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                         </svg>
                     </button>
+
+                    <!-- Logout Button (Hidden on Mobile) -->
                     <a href="login.html" class="btn-logout desktop-only">Logout</a>
                 </div>
 
-                <!-- Mobile Hamburger Button -->
+                <!-- Hamburger Button (Visible on Mobile) -->
                 <button id="mobileMenuBtn" class="hamburger-btn" aria-label="Toggle navigation menu">
                     <svg id="hamburgerIcon" style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor"
                         viewBox="0 0 24 24">
@@ -65,7 +71,7 @@
             </div>
         </div>
 
-        <!-- Mobile Dropdown Navigation Menu -->
+        <!-- Mobile Dropdown Navigation (Revealed when Hamburger is clicked) -->
         <div id="mobileNavMenu" class="mobile-nav-menu">
             <nav class="mobile-nav-links">
                 <a href="dashboard.html" class="mobile-nav-link active">Dashboard</a>
@@ -83,7 +89,7 @@
                 <h1>User Dashboard</h1>
                 <p>Track your submitted reports, monitor resolution progress, and earn civic participation badges.</p>
             </div>
-            <button id="openReportModalBtn" class="btn-report">
+            <button type="button" id="openReportModalBtn" class="btn-report">
                 <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
                     viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
@@ -237,7 +243,7 @@
                                     Upvotes</p>
                             </div>
                             <div class="issue-actions">
-                                <button class="btn-sm btn-outline">View Details &rarr;</button>
+                                <button type="button" class="btn-sm btn-outline">View Details &rarr;</button>
                             </div>
                         </div>
 
@@ -256,7 +262,7 @@
                                 </p>
                             </div>
                             <div class="issue-actions">
-                                <button class="btn-sm btn-outline">View Details &rarr;</button>
+                                <button type="button" class="btn-sm btn-outline">View Details &rarr;</button>
                             </div>
                         </div>
 
@@ -275,7 +281,7 @@
                                     Upvotes</p>
                             </div>
                             <div class="issue-actions">
-                                <button class="btn-sm btn-outline">View Details &rarr;</button>
+                                <button type="button" class="btn-sm btn-outline">View Details &rarr;</button>
                             </div>
                         </div>
 
@@ -294,7 +300,8 @@
                 <span class="drawer-category" id="drawerCategory">Category</span>
                 <h3 id="drawerTitle">Issue Details</h3>
             </div>
-            <button id="closeDrawerBtn" class="close-drawer-btn" aria-label="Close drawer">&times;</button>
+            <button type="button" id="closeDrawerBtn" class="close-drawer-btn"
+                aria-label="Close drawer">&times;</button>
         </div>
 
         <div class="drawer-body">
@@ -356,7 +363,7 @@
         </div>
 
         <div class="drawer-footer">
-            <button class="btn-submit-auth" id="closeDrawerFooterBtn">Close Panel</button>
+            <button type="button" class="btn-submit-auth" id="closeDrawerFooterBtn">Close Panel</button>
         </div>
     </aside>
 
@@ -365,7 +372,7 @@
         <div class="modal-container">
             <div class="modal-header">
                 <h3>Report a Community Issue</h3>
-                <button id="closeReportModalBtn" class="modal-close-btn">
+                <button type="button" id="closeReportModalBtn" class="modal-close-btn">
                     <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M6 18L18 6M6 6l12 12" />

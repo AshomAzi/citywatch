@@ -134,6 +134,14 @@ a {
     font-size: 0.875rem;
 }
 
+.user-avatar-img {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--cityblue-500);
+}
+
 .theme-toggle-btn {
     background: transparent;
     border: none;
@@ -668,4 +676,100 @@ a {
     border-radius: var(--radius-md);
     font-weight: 600;
     cursor: pointer;
+}
+
+/* ==========================================
+   MOBILE & RESPONSIVE BREAKPOINTS
+   ========================================== */
+
+@media (max-width: 768px) {
+    .dashboard-wrapper {
+        padding: 1.25rem 0.75rem;
+    }
+
+    .dashboard-head {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.875rem;
+    }
+
+    .dashboard-head h1 {
+        font-size: 1.5rem;
+    }
+
+    .dashboard-head .btn-report,
+    .dashboard-head .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .impact-summary-panel {
+        padding: 1rem;
+    }
+
+    .panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .filter-controls,
+    .select-input {
+        width: 100%;
+    }
+
+    .issue-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .issue-actions {
+        width: 100%;
+    }
+
+    .issue-actions .btn-sm {
+        width: 100%;
+        text-align: center;
+    }
+
+    .detail-drawer {
+        max-width: 100%;
+    }
+}
+
+/* Specific Header Visibility for Screens <= 639px */
+@media (max-width: 639px) {
+    .site-header .nav-links {
+        display: none !important;
+    }
+
+    .site-header .btn-logout {
+        display: none !important;
+    }
+
+    .site-header .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .site-header .user-profile-menu {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .site-header .hamburger-btn {
+        display: flex !important;
+    }
 }
