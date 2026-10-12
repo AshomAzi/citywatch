@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upvoted Items - CityWatch</title>
+    <link rel="stylesheet" href="style/styles.css">
+    <link rel="stylesheet" href="style/dashboard.css">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-content">
+            <a href="index.html" class="brand-logo">
+                <div class="brand-icon">
+                    <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                </div>
+                <span>CityWatch</span>
+            </a>
+
+            <div class="header-actions">
+                <!-- Desktop Only Navigation Links -->
+                <nav class="nav-links desktop-only">
+                    <a href="dashboard.html" class="nav-link active">Dashboard</a>
+                    <a href="index.html" class="nav-link">City Feed</a>
+                </nav>
+
+                <div class="user-profile-menu">
+                    <!-- User Avatar (Visible on both Desktop and Mobile) -->
+                    <img src="images/avatar-placeholder.png" alt="User Profile" class="user-avatar-img">
+
+                    <!-- Theme Toggle Icon (Visible on both Desktop and Mobile) -->
+                    <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle light/dark theme"
+                        title="Toggle theme">
+                        <svg id="sunIcon" style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                        <svg id="moonIcon" style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                    </button>
+
+                    <!-- Logout Button (Hidden on Mobile) -->
+                    <a href="login.html" class="btn-logout desktop-only">Logout</a>
+                </div>
+
+                <!-- Hamburger Button (Visible on Mobile) -->
+                <button id="mobileMenuBtn" class="hamburger-btn" aria-label="Toggle navigation menu">
+                    <svg id="hamburgerIcon" style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg id="closeMenuIcon" style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobileNavMenu" class="mobile-nav-menu">
+            <nav class="mobile-nav-links">
+                <a href="dashboard.html" class="mobile-nav-link active">Dashboard</a>
+                <a href="index.html" class="mobile-nav-link">City Feed</a>
+                <a href="login.html" class="mobile-nav-link">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="dashboard-wrapper container">
+
+        <!-- Welcome Header -->
+        <section class="dashboard-head">
+            <div>
+                <h1>Upvoted Items</h1>
+                <p>Browse and track the community reports you have upvoted to support local resolution.</p>
+            </div>
+            <a href="dashboard.html" class="btn-outline" style="padding: 0.625rem 1.25rem; border-radius: var(--radius-md); font-weight: 600; font-size: 0.875rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                &larr; Back to Dashboard
+            </a>
+        </section>
+
+        <!-- Main Dashboard Content Grid -->
+        <div class="dashboard-grid">
+
+            <!-- Left Column: User Profile Menu & Badges -->
+            <aside class="sidebar-col">
+                <div class="content-card profile-card">
+                    <div class="profile-header">
+                        <div class="avatar">
+                            <img src="images/avatar-placeholder.png" alt="User Profile" class="user-avatar-img">
+                        </div>
+                        <div class="profile-meta">
+                            <h4>Ashom Azi</h4>
+                            <span class="user-role">Verified Resident</span>
+                        </div>
+                    </div>
+
+                    <!-- Profile Navigation Menu with Updated Link -->
+                    <nav class="profile-nav">
+                        <a href="dashboard.html" class="profile-nav-link">
+                            <span>My Submitted Reports</span>
+                            <span class="counter-badge">12</span>
+                        </a>
+                        <a href="saved-issues.html" class="profile-nav-link">
+                            <span>Saved Issues</span>
+                            <span class="counter-badge">4</span>
+                        </a>
+                        <a href="upvoted.html" class="profile-nav-link active">
+                            <span>Upvoted Items</span>
+                            <span class="counter-badge highlight">45</span>
+                        </a>
+                        <a href="dashboard.html#badges" class="profile-nav-link">
+                            <span>Badges Earned</span>
+                            <span class="counter-badge">3</span>
+                        </a>
+                    </nav>
+
+                    <hr class="card-divider">
+
+                    <!-- Civic Badges Section -->
+                    <div class="badges-section">
+                        <h4>Civic Badges Earned</h4>
+                        <div class="badges-grid">
+                            <div class="badge-item" title="Community Guardian">
+                                <div class="badge-icon icon-guardian">🛡️</div>
+                                <span class="badge-title">Community Guardian</span>
+                            </div>
+                            <div class="badge-item" title="Spotter Level 3">
+                                <div class="badge-icon icon-spotter">🔍</div>
+                                <span class="badge-title">Spotter Level 3</span>
+                            </div>
+                            <div class="badge-item" title="First Responder">
+                                <div class="badge-icon icon-responder">⚡</div>
+                                <span class="badge-title">First Responder</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Right Column: Upvoted Reports List -->
+            <div class="main-content-col">
+                <div class="content-card">
+                    <div class="card-header">
+                        <h3>Community Reports You Upvoted</h3>
+                        <div class="filter-controls">
+                            <select id="statusFilter" class="select-input">
+                                <option value="all">All Statuses</option>
+                                <option value="pending">Pending</option>
+                                <option value="dispatched">Dispatched to Crew</option>
+                                <option value="resolved">Resolved</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Issues List Container -->
+                    <div class="issues-list" id="issuesList">
+
+                        <!-- Upvoted Item Card 1 -->
+                        <div class="issue-item clickable-card" data-id="201"
+                            data-title="Blocked Drainage System at Anglo Jos" data-category="Sanitation"
+                            data-date="Oct 8, 2026" data-status="dispatched" data-status-text="Dispatched to Crew"
+                            data-step="3" data-location="Anglo Jos Junction"
+                            data-description="Stagnant water accumulating due to blocked concrete drainage channels following heavy rainfall.">
+                            <div class="issue-main">
+                                <div class="issue-title-row">
+                                    <h4 class="issue-title">Blocked Drainage System at Anglo Jos</h4>
+                                    <span class="badge badge-warning">Dispatched to Crew</span>
+                                </div>
+                                <p class="issue-meta">Reported by Community Member &bull; Category: Sanitation &bull; 42 Upvotes</p>
+                            </div>
+                            <div class="issue-actions">
+                                <button type="button" class="btn-sm btn-outline">View Details &rarr;</button>
+                            </div>
+                        </div>
+
+                        <!-- Upvoted Item Card 2 -->
+                        <div class="issue-item clickable-card" data-id="202"
+                            data-title="Water Pipeline Leakage on Secretariat Road" data-category="Water"
+                            data-date="Oct 5, 2026" data-status="resolved" data-status-text="Resolved" data-step="4"
+                            data-location="Secretariat Road, Dadin Kowa"
+                            data-description="Main municipal water line crack repaired and pressure flow restored by Plateau State Water Board.">
+                            <div class="issue-main">
+                                <div class="issue-title-row">
+                                    <h4 class="issue-title">Water Pipeline Leakage on Secretariat Road</h4>
+                                    <span class="badge badge-success">Resolved</span>
+                                </div>
+                                <p class="issue-meta">Reported by Community Member &bull; Category: Water &bull; 58 Upvotes</p>
+                            </div>
+                            <div class="issue-actions">
+                                <button type="button" class="btn-sm btn-outline">View Details &rarr;</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Side Drawer Modal for Detailed Progress Timeline -->
+    <div id="drawerBackdrop" class="drawer-backdrop"></div>
+    <aside id="detailDrawer" class="detail-drawer" aria-hidden="true">
+        <div class="drawer-header">
+            <div>
+                <span class="drawer-category" id="drawerCategory">Category</span>
+                <h3 id="drawerTitle">Issue Details</h3>
+            </div>
+            <button type="button" id="closeDrawerBtn" class="close-drawer-btn" aria-label="Close drawer">&times;</button>
+        </div>
+
+        <div class="drawer-body">
+            <div class="drawer-section">
+                <label class="drawer-label">Location</label>
+                <p id="drawerLocation" class="drawer-text">-</p>
+            </div>
+
+            <div class="drawer-section">
+                <label class="drawer-label">Description</label>
+                <p id="drawerDescription" class="drawer-text">-</p>
+            </div>
+
+            <hr class="card-divider">
+
+            <!-- Resolution Progress Timeline -->
+            <div class="drawer-section">
+                <label class="drawer-label">Resolution Timeline</label>
+
+                <div class="timeline">
+                    <div class="timeline-item" id="timeStep1">
+                        <div class="timeline-marker">1</div>
+                        <div class="timeline-content">
+                            <h5>Submitted</h5>
+                            <p>Report received and logged into municipal database.</p>
+                            <span class="timeline-date" id="drawerSubmittedDate">Oct 5, 2026</span>
+                        </div>
+                    </div>
+                    <div class="timeline-item" id="timeStep2">
+                        <div class="timeline-marker">2</div>
+                        <div class="timeline-content">
+                            <h5>Under Review</h5>
+                            <p>Evaluated by department coordinator and prioritized.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" id="timeStep3">
+                        <div class="timeline-marker">3</div>
+                        <div class="timeline-content">
+                            <h5>Dispatched to Crew</h5>
+                            <p>Work order assigned to field repair team.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" id="timeStep4">
+                        <div class="timeline-marker">4</div>
+                        <div class="timeline-content">
+                            <h5>Resolved</h5>
+                            <p>Work completed and verified by site inspection.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="drawer-footer">
+            <button type="button" class="btn-submit-auth" id="closeDrawerFooterBtn">Close Panel</button>
+        </div>
+    </aside>
+
+    <script src="js/script.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
