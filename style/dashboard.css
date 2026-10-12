@@ -552,7 +552,6 @@ a {
    ========================================== */
 .drawer-backdrop {
     display: none;
-    /* Strictly hidden until JavaScript adds .active */
     position: fixed;
     top: 0;
     left: 0;
@@ -574,7 +573,6 @@ a {
 
 .detail-drawer {
     display: none;
-    /* Strictly hidden until JavaScript adds .open */
     position: fixed;
     top: 0;
     right: -100%;
@@ -725,6 +723,17 @@ a {
     cursor: pointer;
 }
 
+/* Scoped helper for badge icon containers */
+.badge-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-md);
+    flex-shrink: 0;
+}
+
 /* ==========================================
    MOBILE & RESPONSIVE BREAKPOINTS
    ========================================== */
@@ -794,7 +803,6 @@ a {
     }
 }
 
-/* Specific Header Visibility for Screens <= 639px */
 @media (max-width: 639px) {
     .site-header .nav-links {
         display: none !important;
