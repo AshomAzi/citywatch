@@ -39,6 +39,7 @@
             </div>
 
             <div class="header-actions">
+                <!-- DEFAULT (GUEST) HEADER ACTIONS -->
                 <nav class="nav-links">
                     <a href="#" class="nav-link active">Issues</a>
                     <a href="#" class="nav-link">Directory</a>
@@ -46,7 +47,7 @@
                 </nav>
                 <a href="signup.html" class="btn-register desktop-only">Register</a>
 
-                <!-- Theme Switcher Button -->
+                <!-- Theme Switcher Button (Default Guest View) -->
                 <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle light/dark theme"
                     title="Toggle theme">
                     <!-- Sun Icon (visible in Dark Mode) -->
@@ -62,6 +63,28 @@
                             d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
                 </button>
+
+                <!-- 
+                  =====================================================================
+                  LOGGED-IN USER HEADER ACTIONS (COMMENTED OUT UNTIL DJANGO INTEGRATION)
+                  When ready, you can wrap this in Django tags like: 
+                  {% if user.is_authenticated %} ... {% endif %}
+                  =====================================================================
+                -->
+                <!--
+                <div class="user-profile-menu">
+                    <img src="images/avatar-placeholder.png" alt="User Profile" class="user-avatar-img">
+
+                    <button id="themeToggleBtnLogged" class="theme-toggle-btn" aria-label="Toggle light/dark theme" title="Toggle theme">
+                        <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </button>
+
+                    <a href="logout.html" class="btn-logout desktop-only">Logout</a>
+                </div>
+                -->
 
                 <!-- Mobile Hamburger Button -->
                 <button id="mobileMenuBtn" class="hamburger-btn" aria-label="Toggle navigation menu">
