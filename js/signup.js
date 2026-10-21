@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const registerForm = document.getElementById("registerForm");
+    const registerStatus = document.getElementById("registerStatus");
 
     // Inputs
     const firstNameInput = document.getElementById("firstName");
@@ -122,8 +123,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (isValid) {
-            alert("Registration successful! Redirecting to home page...");
-            window.location.href = "index.html";
+            if (registerStatus) {
+                registerStatus.textContent = "Registration is unavailable because no account service is connected. Your details were not saved.";
+                registerStatus.classList.add("auth-message-error");
+            }
         }
     });
 });

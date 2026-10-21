@@ -7,7 +7,6 @@
     <title>Upvoted Items - CityWatch</title>
     <link rel="stylesheet" href="style/dashboard.css">
     <link rel="stylesheet" href="style/styles.css">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -34,7 +33,7 @@
 
                 <div class="user-profile-menu">
                     <!-- User Avatar (Visible on both Desktop and Mobile) -->
-                    <img src="images/avatar-placeholder.png" alt="User Profile" class="user-avatar-img">
+                    <span class="user-avatar-initials" aria-label="Sample profile initials">AA</span>
 
                     <!-- Theme Toggle Icon (Visible on both Desktop and Mobile) -->
                     <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle light/dark theme"
@@ -52,7 +51,7 @@
                     </button>
 
                     <!-- Logout Button (Hidden on Mobile) -->
-                    <a href="login.html" class="btn-logout desktop-only">Logout</a>
+                    <a href="signin.html" class="btn-logout desktop-only">Sign in</a>
                 </div>
 
                 <!-- Hamburger Button (Visible on Mobile) -->
@@ -76,7 +75,7 @@
             <nav class="mobile-nav-links">
                 <a href="dashboard.html" class="mobile-nav-link active">Dashboard</a>
                 <a href="index.html" class="mobile-nav-link">City Feed</a>
-                <a href="login.html" class="mobile-nav-link">Logout</a>
+                <a href="signin.html" class="mobile-nav-link">Sign in</a>
             </nav>
         </div>
     </header>
@@ -87,13 +86,14 @@
         <section class="dashboard-head">
             <div>
                 <h1>Upvoted Items</h1>
-                <p>Browse and track the community reports you have upvoted to support local resolution.</p>
+                <p>A sample view of community reports a resident has supported.</p>
             </div>
             <a href="dashboard.html" class="btn-outline"
                 style="padding: 0.625rem 1.25rem; border-radius: var(--radius-md); font-weight: 600; font-size: 0.875rem; display: inline-flex; align-items: center; gap: 0.5rem;">
                 &larr; Back to Dashboard
             </a>
         </section>
+        <p class="sample-note">All profile details, votes, and report records shown here are sample content. Feed confirmations update only in this browser and are not linked to this static list.</p>
 
         <!-- Main Dashboard Content Grid -->
         <div class="dashboard-grid">
@@ -103,11 +103,11 @@
                 <div class="content-card profile-card">
                     <div class="profile-header">
                         <div class="avatar">
-                            <img src="images/avatar-placeholder.png" alt="User Profile" class="user-avatar-img">
+                            <span class="user-avatar-initials" aria-label="Sample profile initials">AA</span>
                         </div>
                         <div class="profile-meta">
-                            <h4>Ashom Azi</h4>
-                            <span class="user-role">Verified Resident</span>
+                            <h4>Sample resident</h4>
+                            <span class="user-role">Demonstration profile</span>
                         </div>
                     </div>
 
@@ -204,6 +204,8 @@
                             data-date="Oct 8, 2026" data-status="dispatched" data-status-text="Dispatched to Crew"
                             data-step="3" data-location="Anglo Jos Junction"
                             data-description="Stagnant water accumulating due to blocked concrete drainage channels following heavy rainfall.">
+                            <img class="issue-thumb" src="images/street-flood.jpg"
+                                alt="Illustrative flooded-road photograph, not evidence of this sample report" loading="lazy">
                             <div class="issue-main">
                                 <div class="issue-title-row">
                                     <h4 class="issue-title">Blocked Drainage System at Anglo Jos</h4>
@@ -223,6 +225,8 @@
                             data-date="Oct 5, 2026" data-status="resolved" data-status-text="Resolved" data-step="4"
                             data-location="Secretariat Road, Dadin Kowa"
                             data-description="Main municipal water line crack repaired and pressure flow restored by Plateau State Water Board.">
+                            <img class="issue-thumb" src="images/water-leak.jpg"
+                                alt="Illustrative water-pipe leak location, not evidence of this sample report" loading="lazy">
                             <div class="issue-main">
                                 <div class="issue-title-row">
                                     <h4 class="issue-title">Water Pipeline Leakage on Secretariat Road</h4>

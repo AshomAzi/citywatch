@@ -7,7 +7,6 @@
     <title>Dashboard - CityWatch</title>
     <link rel="stylesheet" href="style/dashboard.css">
     <link rel="stylesheet" href="style/styles.css">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -34,7 +33,7 @@
 
                 <div class="user-profile-menu">
                     <!-- User Avatar (Visible on both Desktop and Mobile) -->
-                    <img src="images/avatar-placeholder.png" alt="User Profile" class="user-avatar-img">
+                    <span class="user-avatar-initials" aria-label="Sample profile initials">AA</span>
 
                     <!-- Theme Toggle Icon (Visible on both Desktop and Mobile) -->
                     <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle light/dark theme"
@@ -52,7 +51,7 @@
                     </button>
 
                     <!-- Logout Button (Hidden on Mobile) -->
-                    <a href="login.html" class="btn-logout desktop-only">Logout</a>
+                    <a href="signin.html" class="btn-logout desktop-only">Sign in</a>
                 </div>
 
                 <!-- Hamburger Button (Visible on Mobile) -->
@@ -75,8 +74,8 @@
         <div id="mobileNavMenu" class="mobile-nav-menu">
             <nav class="mobile-nav-links">
                 <a href="dashboard.html" class="mobile-nav-link active">Dashboard</a>
-                <a href="issues.html" class="mobile-nav-link">City Feed</a>
-                <a href="login.html" class="mobile-nav-link">Logout</a>
+                <a href="index.html" class="mobile-nav-link">City Feed</a>
+                <a href="signin.html" class="mobile-nav-link">Sign in</a>
             </nav>
         </div>
     </header>
@@ -86,8 +85,8 @@
         <!-- Welcome Header -->
         <section class="dashboard-head">
             <div>
-                <h1>User Dashboard</h1>
-                <p>Track your submitted reports, monitor resolution progress, and earn civic participation badges.</p>
+                <h1>Your civic activity</h1>
+                <p>A sample dashboard layout for tracking reports, status changes, and community contributions.</p>
             </div>
             <button type="button" id="openReportModalBtn" class="btn-report">
                 <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
@@ -97,28 +96,29 @@
                 Report New Issue
             </button>
         </section>
+        <p class="sample-note">All profile details, counts, report records, and timelines on this page are sample data and are not connected to an account or municipal service.</p>
 
         <!-- Top Summary Panel: Community Impact Stats -->
         <section class="impact-summary-panel">
             <div class="panel-header">
                 <h3>Community Impact</h3>
-                <span class="impact-subtitle">City-wide performance overview</span>
+                <span class="impact-subtitle">Illustrative sample figures · not live data</span>
             </div>
             <div class="stats-grid">
                 <div class="stat-card">
-                    <span class="stat-title">Total Issues Reported</span>
+                    <span class="stat-title">Sample issues reported</span>
                     <span class="stat-value" id="statTotalReported">1,248</span>
-                    <span class="stat-subtext text-muted">+12% from last month</span>
+                    <span class="stat-subtext text-muted">Demonstration figure only</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-title">Issues Resolved This Month</span>
+                    <span class="stat-title">Sample reports resolved</span>
                     <span class="stat-value success" id="statResolvedMonth">184</span>
-                    <span class="stat-subtext text-success">&uarr; 94% clearance rate</span>
+                    <span class="stat-subtext text-success">Demonstration figure only</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-title">Average Resolution Time</span>
+                    <span class="stat-title">Sample resolution time</span>
                     <span class="stat-value info" id="statAvgTime">3.2 Days</span>
-                    <span class="stat-subtext text-muted">Faster than 2025 avg (4.5d)</span>
+                    <span class="stat-subtext text-muted">Demonstration figure only</span>
                 </div>
             </div>
         </section>
@@ -132,11 +132,11 @@
                 <div class="content-card profile-card">
                     <div class="profile-header">
                         <div class="avatar">
-                            <img src="images/avatar-placeholder.png" alt="User Profile" class="user-avatar-img">
+                            <span class="user-avatar-initials" aria-label="Sample profile initials">AA</span>
                         </div>
                         <div class="profile-meta">
-                            <h4>Ashom Azi</h4>
-                            <span class="user-role">Verified Resident</span>
+                            <h4>Sample resident</h4>
+                            <span class="user-role">Demonstration profile</span>
                         </div>
                     </div>
 
@@ -236,6 +236,8 @@
                             data-date="Oct 4, 2026" data-status="dispatched" data-status-text="Dispatched to Crew"
                             data-step="3" data-location="Bauchi Road, Jos"
                             data-description="Streetlight pole #42 flickering and unlit for past 3 days causing night safety concerns.">
+                            <img class="issue-thumb" src="images/streetlights.jpg"
+                                alt="Illustrative photograph of street lighting, not evidence of this sample report" loading="lazy">
                             <div class="issue-main">
                                 <div class="issue-title-row">
                                     <h4 class="issue-title">Broken Streetlight on Bauchi Road</h4>
@@ -255,6 +257,8 @@
                             data-date="Sep 28, 2026" data-status="resolved" data-status-text="Resolved" data-step="4"
                             data-location="Terminus Market Main Junction"
                             data-description="Large pothole in center lane repaired by public works road crew. asphalt resurfacing complete.">
+                            <img class="issue-thumb" src="images/pothole.jpg"
+                                alt="Illustrative photograph of a pothole, not evidence of this sample report" loading="lazy">
                             <div class="issue-main">
                                 <div class="issue-title-row">
                                     <h4 class="issue-title">Deep Pothole Near Terminus Market</h4>
@@ -274,6 +278,8 @@
                             data-date="Oct 7, 2026" data-status="pending" data-status-text="Submitted" data-step="1"
                             data-location="Rayfield Public Park Gate 2"
                             data-description="Communal waste bin overflowing into pedestrian walkway. Needs municipal collection crew.">
+                            <img class="issue-thumb" src="images/street-waste.jpg"
+                                alt="Illustrative photograph of street waste, not evidence of this sample report" loading="lazy">
                             <div class="issue-main">
                                 <div class="issue-title-row">
                                     <h4 class="issue-title">Overflowing Waste Bin at Rayfield</h4>
@@ -329,7 +335,7 @@
                         <div class="timeline-marker">1</div>
                         <div class="timeline-content">
                             <h5>Submitted</h5>
-                            <p>Report received and logged into municipal database.</p>
+                            <p>Sample milestone showing that a report has been received.</p>
                             <span class="timeline-date" id="drawerSubmittedDate">Oct 4, 2026</span>
                         </div>
                     </div>
@@ -369,74 +375,68 @@
         </div>
     </aside>
 
-    <!-- Report New Issue Modal (Matching index.html overlay) -->
-    <div id="reportModal" class="modal-backdrop">
-        <div class="modal-container">
+    <div id="reportModal" class="modal-backdrop" aria-hidden="true">
+        <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="reportModalTitle">
             <div class="modal-header">
-                <h3>Report a Community Issue</h3>
-                <button type="button" id="closeReportModalBtn" class="modal-close-btn">
-                    <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
+                <h3 id="reportModalTitle">Report a community issue</h3>
+                <button type="button" id="closeReportModalBtn" class="modal-close-btn" aria-label="Close report form">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
-
             <form id="issueUploadForm" action="#" method="POST" enctype="multipart/form-data" class="modal-form">
                 <div class="form-group">
-                    <label class="form-label">Issue Title</label>
-                    <input type="text" name="title" required placeholder="e.g. Broken street light, Pothole"
-                        class="form-input">
+                    <label for="reportTitle" class="form-label">Issue title</label>
+                    <input id="reportTitle" type="text" name="title" required placeholder="e.g. Broken street light, pothole" class="form-input">
                 </div>
-
                 <div class="form-grid">
                     <div class="form-group">
-                        <label class="form-label">Category</label>
-                        <select name="category" required class="form-select">
+                        <label for="reportCategory" class="form-label">Category</label>
+                        <select id="reportCategory" name="category" required class="form-select">
                             <option value="Roads">Roads</option>
                             <option value="Water">Water</option>
                             <option value="Waste">Waste</option>
                             <option value="Parks">Parks</option>
                         </select>
                     </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Location</label>
-                        <input type="text" name="location" id="locationInput" required
-                            placeholder="Street address or landmark" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label for="locationInput" class="form-label">Location</label>
+                    <div class="location-input-group">
+                        <input type="text" name="location" id="locationInput" required placeholder="Street address or landmark" class="form-input">
+                        <button type="button" id="detectLocationBtn" class="btn-detect-location">Use my location</button>
                     </div>
+                    <div id="modalMap" class="modal-map-container" aria-label="Map to choose the issue location">
+                        <span id="mapUnavailableNote">Map preview unavailable · enter an address manually</span>
+                    </div>
+                    <p class="form-hint">Map selection requires a configured Google Maps API key. Manual addresses remain available.</p>
+                    <p id="locationStatus" class="form-hint" role="status" aria-live="polite"></p>
+                    <input type="hidden" id="latitudeInput" name="latitude">
+                    <input type="hidden" id="longitudeInput" name="longitude">
                 </div>
-
                 <div class="form-group">
-                    <label class="form-label">Description</label>
-                    <textarea name="description" rows="3" required
-                        placeholder="Provide details to help local teams fix the issue..."
-                        class="form-textarea"></textarea>
+                    <label for="reportDescription" class="form-label">Description</label>
+                    <textarea id="reportDescription" name="description" rows="3" required placeholder="Describe what needs attention..." class="form-textarea"></textarea>
                 </div>
-
                 <div class="form-group">
-                    <label class="form-label">Photo Upload</label>
+                    <label for="file-upload" class="form-label">Photo upload</label>
                     <div class="file-upload-box">
                         <div class="upload-content">
-                            <svg class="upload-icon" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-                                <path
-                                    d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <svg class="upload-icon" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
+                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-                            <div style="font-size: 0.875rem; margin-top: 0.25rem;">
-                                <span style="font-weight: 500; color: var(--cityblue-600);">Upload a file</span> or drag
-                                and drop
-                            </div>
-                            <p style="font-size: 0.75rem; color: var(--slate-400); margin-top: 0.25rem;">PNG, JPG up to
-                                10MB</p>
+                            <div class="upload-text-main"><span class="upload-link-text">Choose a photo</span> or drag and drop</div>
+                            <p class="upload-text-sub">JPG or PNG · up to 10 MB · local preview only</p>
                         </div>
                         <input id="file-upload" name="image" type="file" accept="image/*" class="file-input-hidden">
                     </div>
+                    <img id="reportImagePreview" class="image-preview" alt="Selected report photo preview">
                 </div>
-
+                <p id="reportFormMessage" class="report-form-message" role="status" aria-live="polite"></p>
                 <div class="modal-actions">
                     <button type="button" id="cancelReportModalBtn" class="btn-cancel">Cancel</button>
-                    <button type="submit" class="btn-submit">Submit Issue</button>
+                    <button type="submit" class="btn-submit">Submit issue</button>
                 </div>
             </form>
         </div>

@@ -1,33 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Theme Switcher
-    const themeToggleBtn = document.getElementById("themeToggleBtn");
-    const sunIcon = document.getElementById("sunIcon");
-    const moonIcon = document.getElementById("moonIcon");
-
-    const savedTheme = localStorage.getItem("citywatch-theme");
-    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: light)").matches;
-    let currentTheme = savedTheme || (systemPrefersDark ? "light" : "dark");
-
-    function applyTheme(theme) {
-        document.documentElement.setAttribute("data-theme", theme);
-        document.body.classList.toggle("dark-mode", theme === "dark");
-        localStorage.setItem("citywatch-theme", theme);
-
-        if (sunIcon && moonIcon) {
-            sunIcon.style.display = theme === "dark" ? "block" : "none";
-            moonIcon.style.display = theme === "dark" ? "none" : "block";
-        }
-    }
-
-    applyTheme(currentTheme);
-
-    if (themeToggleBtn) {
-        themeToggleBtn.addEventListener("click", function () {
-            currentTheme = currentTheme === "light" ? "dark" : "light";
-            applyTheme(currentTheme);
-        });
-    }
-
     // Side Drawer Modal Elements
     const detailDrawer = document.getElementById("detailDrawer");
     const drawerBackdrop = document.getElementById("drawerBackdrop");
@@ -40,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const drawerLocation = document.getElementById("drawerLocation");
     const drawerDescription = document.getElementById("drawerDescription");
     const drawerSubmittedDate = document.getElementById("drawerSubmittedDate");
+    let drawerOpener = null;
 
     function openDrawer(cardData) {
         drawerTitle.textContent = cardData.title;
@@ -65,17 +37,21 @@ document.addEventListener("DOMContentLoaded", function () {
         detailDrawer.classList.add("open");
         drawerBackdrop.classList.add("active");
         detailDrawer.setAttribute("aria-hidden", "false");
+        if (closeDrawerBtn) closeDrawerBtn.focus();
     }
 
     function closeDrawer() {
         detailDrawer.classList.remove("open");
         drawerBackdrop.classList.remove("active");
+        if (drawerOpener && drawerOpener.isConnected) drawerOpener.focus();
+        drawerOpener = null;
         detailDrawer.setAttribute("aria-hidden", "true");
     }
 
     // Attach Click Handler to Issue Cards
     document.querySelectorAll(".clickable-card").forEach((card) => {
         card.addEventListener("click", function () {
+            drawerOpener = this.querySelector("button") || this;
             const cardData = {
                 id: this.dataset.id,
                 title: this.dataset.title,
@@ -102,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.querySelectorAll(".issue-item").forEach((item) => {
                 const itemStatus = item.getAttribute("data-status");
                 if (filterValue === "all" || itemStatus === filterValue) {
-                    item.style.display = "flex";
+                    item.style.display = "";
                 } else {
                     item.style.display = "none";
                 }
