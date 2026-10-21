@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const drawerLocation = document.getElementById("drawerLocation");
     const drawerDescription = document.getElementById("drawerDescription");
     const drawerSubmittedDate = document.getElementById("drawerSubmittedDate");
+    let drawerOpener = null;
 
     function openDrawer(cardData) {
         drawerTitle.textContent = cardData.title;
@@ -36,17 +37,21 @@ document.addEventListener("DOMContentLoaded", function () {
         detailDrawer.classList.add("open");
         drawerBackdrop.classList.add("active");
         detailDrawer.setAttribute("aria-hidden", "false");
+        if (closeDrawerBtn) closeDrawerBtn.focus();
     }
 
     function closeDrawer() {
         detailDrawer.classList.remove("open");
         drawerBackdrop.classList.remove("active");
+        if (drawerOpener && drawerOpener.isConnected) drawerOpener.focus();
+        drawerOpener = null;
         detailDrawer.setAttribute("aria-hidden", "true");
     }
 
     // Attach Click Handler to Issue Cards
     document.querySelectorAll(".clickable-card").forEach((card) => {
         card.addEventListener("click", function () {
+            drawerOpener = this.querySelector("button") || this;
             const cardData = {
                 id: this.dataset.id,
                 title: this.dataset.title,
