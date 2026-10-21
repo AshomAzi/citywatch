@@ -24,6 +24,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const locationInput = document.getElementById("locationInput");
   const latitudeInput = document.getElementById("latitudeInput");
   const longitudeInput = document.getElementById("longitudeInput");
+  const locationStatus = document.getElementById("locationStatus");
+  const mapUnavailableNote = document.getElementById("mapUnavailableNote");
+  const imageInput = document.getElementById("file-upload");
+  const imagePreview = document.getElementById("reportImagePreview");
+  const reportFormMessage = document.getElementById("reportFormMessage");
 
   // Navigation and Theme elements
   const mobileMenuBtn = document.getElementById("mobileMenuBtn");
@@ -43,6 +48,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let modalMap = null;
   let mapMarker = null;
   let geocoder = null;
+  let previewUrl = null;
+  let previouslyFocusedElement = null;
   const defaultCoords = { lat: 9.8965, lng: 8.8583 }; // Default coordinates (Jos center)
 
   // User Upvote Storage (Persisted in LocalStorage)
@@ -130,6 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function initModalMap() {
     const mapContainer = document.getElementById("modalMap");
     if (!mapContainer || typeof google === "undefined" || !google.maps) return;
+    if (mapUnavailableNote) mapUnavailableNote.hidden = true;
 
     if (!geocoder) {
       geocoder = new google.maps.Geocoder();
@@ -162,39 +170,51 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function setMapLocation(lat, lng, doReverseGeocode = false) {
-    if (!modalMap || typeof google === "undefined") return;
+    const latValue = parseFloat(lat);
+    const lngValue = parseFloat(lng);
 
-    const pos = { lat: parseFloat(lat), lng: parseFloat(lng) };
+    if (!Number.isFinite(latValue) || !Number.isFinite(lngValue)) return;
 
-    if (!mapMarker) {
-      mapMarker = new google.maps.Marker({
-        position: pos,
-        map: modalMap,
-        draggable: true,
-        animation: google.maps.Animation.DROP
-      });
+    const pos = { lat: latValue, lng: lngValue };
 
-      mapMarker.addListener("dragend", function () {
-        const position = mapMarker.getPosition();
-        setMapLocation(position.lat(), position.lng(), true);
-      });
-    } else {
-      mapMarker.setPosition(pos);
-    }
-
-    modalMap.panTo(pos);
-
-    // Store coordinates in hidden form inputs for Django
+    // Store coordinates in hidden form inputs even when Google Maps is not configured.
     if (latitudeInput) latitudeInput.value = pos.lat.toFixed(6);
     if (longitudeInput) longitudeInput.value = pos.lng.toFixed(6);
 
-    // Reverse geocoding via Google Maps Geocoder Service
-    if (doReverseGeocode && locationInput && geocoder) {
+    if (typeof google !== "undefined" && google.maps && modalMap) {
+      if (!mapMarker) {
+        mapMarker = new google.maps.Marker({
+          position: pos,
+          map: modalMap,
+          draggable: true,
+          animation: google.maps.Animation.DROP
+        });
+
+        mapMarker.addListener("dragend", function () {
+          const position = mapMarker.getPosition();
+          setMapLocation(position.lat(), position.lng(), true);
+        });
+      } else {
+        mapMarker.setPosition(pos);
+      }
+
+      modalMap.panTo(pos);
+    }
+
+    // Reverse geocoding via Google Maps Geocoder Service when available.
+    if (doReverseGeocode && locationInput && typeof google !== "undefined" && google.maps && geocoder) {
       geocoder.geocode({ location: pos }, (results, status) => {
         if (status === "OK" && results[0]) {
           locationInput.value = results[0].formatted_address;
         }
       });
+    } else if (locationInput && !locationInput.value.trim()) {
+      locationInput.value = `${pos.lat.toFixed(5)}, ${pos.lng.toFixed(5)}`;
+    }
+    if (locationStatus) {
+      locationStatus.textContent = modalMap
+        ? "Coordinates added. Adjust the pin or edit the address if needed."
+        : "Coordinates detected. Add an address if you know one; the map needs a Google Maps API key.";
     }
   }
 
@@ -216,15 +236,47 @@ document.addEventListener("DOMContentLoaded", function () {
             detectLocationBtn.innerHTML = originalBtnContent;
           },
           (error) => {
-            alert("Unable to acquire location. Please pick your position on the map directly.");
+            const message = error.code === error.PERMISSION_DENIED
+              ? "Location permission was denied. Enter an address manually."
+              : error.code === error.TIMEOUT
+                ? "Location detection timed out. Enter an address manually."
+                : "Unable to detect location. Enter an address manually.";
+            if (locationStatus) locationStatus.textContent = message;
             detectLocationBtn.disabled = false;
             detectLocationBtn.innerHTML = originalBtnContent;
           },
           { enableHighAccuracy: true, timeout: 10000 }
         );
       } else {
-        alert("Geolocation is not supported by your browser.");
+        if (locationStatus) locationStatus.textContent = "Location detection is not supported by this browser. Enter an address manually.";
       }
+    });
+  }
+
+  if (imageInput && imagePreview) {
+    imageInput.addEventListener("change", function () {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      previewUrl = null;
+      imagePreview.classList.remove("visible");
+      imagePreview.removeAttribute("src");
+
+      const file = imageInput.files && imageInput.files[0];
+      if (!file) return;
+
+      if (!file.type.startsWith("image/") || file.size > 10 * 1024 * 1024) {
+        if (reportFormMessage) {
+          reportFormMessage.textContent = file.size > 10 * 1024 * 1024
+            ? "Choose an image smaller than 10 MB. Your report has not been submitted."
+            : "Choose an image file. Your report has not been submitted.";
+          reportFormMessage.classList.add("visible");
+        }
+        imageInput.value = "";
+        return;
+      }
+
+      previewUrl = URL.createObjectURL(file);
+      imagePreview.src = previewUrl;
+      imagePreview.classList.add("visible");
     });
   }
 
@@ -249,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function () {
         currentSearchQuery === "" || cardText.includes(currentSearchQuery.toLowerCase());
 
       if (matchesStatus && matchesCategory && matchesSearch) {
-        card.style.display = "flex";
+        card.style.display = "";
         visibleCount++;
       } else {
         card.style.display = "none";
@@ -274,7 +326,7 @@ document.addEventListener("DOMContentLoaded", function () {
     visibleCards.forEach((card) => issuesContainer.appendChild(card));
 
     if (issuesCountEl) {
-      issuesCountEl.textContent = `${visibleCount} public issue${visibleCount === 1 ? "" : "s"}`;
+      issuesCountEl.textContent = `${visibleCount} sample report${visibleCount === 1 ? "" : "s"}`;
     }
 
     if (noResultsEl) {
@@ -325,17 +377,38 @@ document.addEventListener("DOMContentLoaded", function () {
   // ==========================================
   function openModal() {
     if (reportModal) {
+      previouslyFocusedElement = document.activeElement;
       reportModal.classList.add("open");
+      reportModal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
       initModalMap(); // Initialize/resize Google Map on open
+      const titleInput = reportModal.querySelector('input[name="title"]');
+      if (titleInput) titleInput.focus();
     }
   }
 
   function closeModal() {
     if (reportModal) {
       reportModal.classList.remove("open");
+      reportModal.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "auto";
-      if (issueUploadForm) issueUploadForm.reset();
+      if (issueUploadForm) {
+        issueUploadForm.reset();
+        if (reportFormMessage) {
+          reportFormMessage.textContent = "";
+          reportFormMessage.classList.remove("visible");
+        }
+        if (locationStatus) locationStatus.textContent = "";
+        if (imagePreview) {
+          imagePreview.classList.remove("visible");
+          imagePreview.removeAttribute("src");
+        }
+        if (previewUrl) URL.revokeObjectURL(previewUrl);
+        previewUrl = null;
+      }
+      if (previouslyFocusedElement && typeof previouslyFocusedElement.focus === "function") {
+        previouslyFocusedElement.focus();
+      }
     }
   }
 
@@ -349,6 +422,60 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  if (issueUploadForm) {
+    issueUploadForm.addEventListener("submit", function (e) {
+      const titleInput = issueUploadForm.querySelector('input[name="title"]');
+      const locationField = issueUploadForm.querySelector('input[name="location"]');
+      const descriptionField = issueUploadForm.querySelector('textarea[name="description"]');
+
+      const requiredFields = [titleInput, locationField, descriptionField];
+      const missingField = requiredFields.find((field) => !field || !field.value.trim());
+
+      if (missingField) {
+        e.preventDefault();
+        if (reportFormMessage) {
+          reportFormMessage.textContent = "Complete the issue title, location, and description before continuing.";
+          reportFormMessage.classList.add("visible");
+        }
+        missingField.focus();
+        return;
+      }
+
+      e.preventDefault();
+      if (reportFormMessage) {
+        reportFormMessage.textContent = "Your report was not sent. This demo has no connected report-submission service.";
+        reportFormMessage.classList.add("visible");
+      }
+    });
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && reportModal && reportModal.classList.contains("open")) {
+      closeModal();
+    }
+  });
+
+  window.addEventListener("citywatchmapsready", function () {
+    if (reportModal && reportModal.classList.contains("open")) {
+      initModalMap();
+      if (latitudeInput && longitudeInput && latitudeInput.value && longitudeInput.value) {
+        setMapLocation(latitudeInput.value, longitudeInput.value);
+      }
+    }
+  });
+
+  document.querySelectorAll(".report-photo, .hero-visual img, .issue-thumb").forEach((image) => {
+    image.addEventListener("error", function () {
+      image.hidden = true;
+      const figure = image.closest(".hero-visual");
+      const caption = figure && figure.querySelector("figcaption");
+      if (caption) caption.textContent = "City image unavailable · sample content";
+      const photoCaption = image.closest(".photo-placeholder-bg")?.querySelector(".photo-text");
+      if (photoCaption) photoCaption.textContent = "Illustrative photo unavailable · sample report";
+    }, { once: true });
+    if (image.complete && image.naturalWidth === 0) image.dispatchEvent(new Event("error"));
+  });
+
   // ==========================================
   // 8. MOBILE MENU INTERACTION
   // ==========================================
@@ -356,12 +483,14 @@ document.addEventListener("DOMContentLoaded", function () {
     mobileMenuBtn.addEventListener("click", function () {
       const isOpen = mobileNavMenu.classList.toggle("open");
       mobileMenuBtn.classList.toggle("active", isOpen);
+      mobileMenuBtn.setAttribute("aria-expanded", String(isOpen));
     });
 
     document.addEventListener("click", function (e) {
       if (!mobileNavMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
         mobileNavMenu.classList.remove("open");
         mobileMenuBtn.classList.remove("active");
+        mobileMenuBtn.setAttribute("aria-expanded", "false");
       }
     });
   }

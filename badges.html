@@ -4,259 +4,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Badges Earned - CityWatch</title>
+    <title>Civic achievements - CityWatch</title>
     <link rel="stylesheet" href="style/dashboard.css">
     <link rel="stylesheet" href="style/styles.css">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-
     <header class="site-header">
         <div class="container header-content">
-            <a href="index.html" class="brand-logo">
-                <div class="brand-icon">
-                    <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
-                        viewBox="0 0 24 24">
+            <a href="index.html" class="brand-logo" aria-label="CityWatch home">
+                <span class="brand-icon" aria-hidden="true">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                     </svg>
-                </div>
+                </span>
                 <span>CityWatch</span>
             </a>
-
             <div class="header-actions">
-                <!-- Desktop Only Navigation Links -->
-                <nav class="nav-links desktop-only">
-                    <a href="dashboard.html" class="nav-link active">Dashboard</a>
-                    <a href="index.html" class="nav-link">City Feed</a>
+                <nav class="nav-links desktop-only" aria-label="Primary navigation">
+                    <a href="dashboard.html" class="nav-link">Dashboard</a>
+                    <a href="index.html#issueFeed" class="nav-link">Community feed</a>
                 </nav>
-
-                <div class="user-profile-menu">
-                    <!-- User Avatar -->
-                    <img src="images/avatar-placeholder.png" alt="User Profile" class="user-avatar-img">
-
-                    <!-- Theme Toggle Icon -->
-                    <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle light/dark theme"
-                        title="Toggle theme">
-                        <svg id="sunIcon" style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                        <svg id="moonIcon" style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                        </svg>
-                    </button>
-
-                    <!-- Logout Button -->
-                    <a href="login.html" class="btn-logout desktop-only">Logout</a>
-                </div>
-
-                <!-- Hamburger Button -->
-                <button id="mobileMenuBtn" class="hamburger-btn" aria-label="Toggle navigation menu">
-                    <svg id="hamburgerIcon" style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
+                <button id="themeToggleBtn" class="theme-toggle-btn" type="button" aria-label="Toggle light/dark theme"
+                    title="Toggle theme">
+                    <svg id="sunIcon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 12h16M4 18h16" />
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
-                    <svg id="closeMenuIcon" style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
+                    <svg id="moonIcon" width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12" />
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+                <button id="mobileMenuBtn" class="hamburger-btn" type="button" aria-label="Toggle navigation menu"
+                    aria-expanded="false">
+                    <svg id="hamburgerIcon" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg id="closeMenuIcon" width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
         </div>
-
-        <!-- Mobile Dropdown Navigation -->
         <div id="mobileNavMenu" class="mobile-nav-menu">
-            <nav class="mobile-nav-links">
-                <a href="dashboard.html" class="mobile-nav-link active">Dashboard</a>
-                <a href="index.html" class="mobile-nav-link">City Feed</a>
-                <a href="login.html" class="mobile-nav-link">Logout</a>
+            <nav class="mobile-nav-links" aria-label="Mobile navigation">
+                <a href="dashboard.html" class="mobile-nav-link">Dashboard</a>
+                <a href="index.html#issueFeed" class="mobile-nav-link">Community feed</a>
+                <a href="signin.html" class="mobile-nav-link">Sign in</a>
             </nav>
         </div>
     </header>
 
     <main class="dashboard-wrapper container">
-
-        <!-- Welcome Header -->
         <section class="dashboard-head">
             <div>
-                <h1>Civic Badges Earned</h1>
-                <p>Unlock achievements and milestone badges as you contribute to municipal upkeep and neighborhood
-                    safety.</p>
+                <span class="hero-subtitle">Civic contribution</span>
+                <h1>Small actions, stronger neighborhoods.</h1>
+                <p>Achievements recognize ways residents can contribute to safer, better-maintained public spaces.</p>
             </div>
-            <a href="dashboard.html" class="btn-outline"
-                style="padding: 0.625rem 1.25rem; border-radius: var(--radius-md); font-weight: 600; font-size: 0.875rem; display: inline-flex; align-items: center; gap: 0.5rem;">
-                &larr; Back to Dashboard
-            </a>
+            <a href="dashboard.html" class="btn-outline">Back to dashboard</a>
         </section>
+        <p class="sample-note">The profile, score, and achievement progress below are illustrative sample content. Badges are not currently issued or calculated by a connected service.</p>
 
-        <!-- Main Dashboard Content Grid -->
         <div class="dashboard-grid">
-
-            <!-- Left Column: User Profile Sidebar Menu -->
             <aside class="sidebar-col">
                 <div class="content-card profile-card">
                     <div class="profile-header">
-                        <div class="avatar">
-                            <img src="images/avatar-placeholder.png" alt="User Profile" class="user-avatar-img">
-                        </div>
+                        <div class="avatar"><span class="user-avatar-initials" aria-label="Sample profile initials">SR</span></div>
                         <div class="profile-meta">
-                            <h4>Ashom Azi</h4>
-                            <span class="user-role">Verified Resident</span>
+                            <h4>Sample resident</h4>
+                            <span class="user-role">Demonstration profile</span>
                         </div>
                     </div>
-
-                    <!-- Profile Navigation Menu -->
-                    <nav class="profile-nav">
-                        <a href="dashboard.html" class="profile-nav-link">
-                            <span>My Submitted Reports</span>
-                            <span class="counter-badge">12</span>
-                        </a>
-                        <a href="savedissues.html" class="profile-nav-link">
-                            <span>Saved Issues</span>
-                            <span class="counter-badge">4</span>
-                        </a>
-                        <a href="upvoted.html" class="profile-nav-link">
-                            <span>Upvoted Items</span>
-                            <span class="counter-badge">45</span>
-                        </a>
-                        <a href="badges.html" class="profile-nav-link active">
-                            <span>Badges Earned</span>
-                            <span class="counter-badge highlight">3</span>
-                        </a>
+                    <nav class="profile-nav" aria-label="Your CityWatch pages">
+                        <a href="dashboard.html" class="profile-nav-link"><span>Submitted reports</span><span class="counter-badge">12</span></a>
+                        <a href="savedissues.html" class="profile-nav-link"><span>Saved issues</span><span class="counter-badge">4</span></a>
+                        <a href="upvoted.html" class="profile-nav-link"><span>Upvoted items</span><span class="counter-badge">45</span></a>
+                        <a href="badges.html" class="profile-nav-link active" aria-current="page"><span>Achievements</span><span class="counter-badge highlight">3</span></a>
                     </nav>
                 </div>
             </aside>
 
-            <!-- Right Column: Detailed Badges Grid Showcase -->
-            <div class="main-content-col">
-                <div class="content-card">
-                    <div class="card-header">
-                        <h3>Achievement Showcase (3 Unlocked)</h3>
-                        <span class="impact-subtitle">Total Civic Score: 340 pts</span>
+            <section class="main-content-col content-card" aria-labelledby="achievementTitle">
+                <div class="card-header">
+                    <div>
+                        <h2 id="achievementTitle">Community milestones</h2>
+                        <p class="impact-subtitle">3 sample achievements shown as earned</p>
                     </div>
-
-                    <div
-                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 1rem;">
-
-                        <!-- Badge Card 1 (Unlocked) -->
-                        <div class="content-card"
-                            style="display: flex; flex-direction: column; align-items: text-start; gap: 0.75rem; border-left: 4px solid var(--cityblue-500);">
-                            <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                <div
-                                    style="font-size: 2rem; background: var(--cityblue-100); padding: 0.5rem; border-radius: var(--radius-md); color: var(--cityblue-600);">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                        viewBox="0 0 24 24">
-                                        <path d="M0 0h24v24H0z" fill="none" />
-                                        <path fill="currentColor"
-                                            d="M12 23q-4.65 0-7.825-1.737T1 17q0-1.725 1.6-3.162T7 11.65v2.05q-1.825.575-2.912 1.475T3 17q0 1.6 2.7 2.8T12 21t6.3-1.2T21 17q0-.925-1.088-1.825T17 13.7v-2.05q2.8.75 4.4 2.188T23 17q0 2.525-3.175 4.263T12 23m-3-4V8H4V6h16v2h-5v11h-2v-5h-2v5zm3-14q-.825 0-1.412-.587T10 3t.588-1.412T12 1t1.413.588T14 3t-.587 1.413T12 5" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 style="font-size: 1rem; font-weight: 700;">Community Guardian</h4>
-                                    <span class="badge badge-success"
-                                        style="margin-top: 0.25rem; display: inline-block;">Unlocked</span>
-                                </div>
-                            </div>
-                            <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4;">
-                                Awarded for active involvement in local safety, infrastructure reporting, and verifying
-                                communal issues.
-                            </p>
-                            <span style="font-size: 0.7rem; color: var(--text-muted);">Earned on Oct 2, 2026</span>
-                        </div>
-
-                        <!-- Badge Card 2 (Unlocked) -->
-                        <div class="content-card"
-                            style="display: flex; flex-direction: column; align-items: text-start; gap: 0.75rem; border-left: 4px solid var(--green-600);">
-                            <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                <div
-                                    style="font-size: 2rem; background: var(--green-100); padding: 0.5rem; border-radius: var(--radius-md); color: var(--green-600);">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                        viewBox="0 0 1024 1024">
-                                        <path d="M0 0h1024v1024H0z" fill="none" />
-                                        <path fill="currentColor"
-                                            d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1S492.1 112 412 112s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0 0 11.6 0l43.6-43.5a8.2 8.2 0 0 0 0-11.6M570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 style="font-size: 1rem; font-weight: 700;">Spotter Level 3</h4>
-                                    <span class="badge badge-success"
-                                        style="margin-top: 0.25rem; display: inline-block;">Unlocked</span>
-                                </div>
-                            </div>
-                            <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4;">
-                                Successfully reported more than 10 verified municipal issues within your jurisdiction.
-                            </p>
-                            <span style="font-size: 0.7rem; color: var(--text-muted);">Earned on Sep 29, 2026</span>
-                        </div>
-
-                        <!-- Badge Card 3 (Unlocked) -->
-                        <div class="content-card"
-                            style="display: flex; flex-direction: column; align-items: text-start; gap: 0.75rem; border-left: 4px solid var(--amber-500);">
-                            <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                <div
-                                    style="font-size: 2rem; background: var(--amber-100); padding: 0.5rem; border-radius: var(--radius-md); color: var(--amber-500);">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                                        viewBox="0 0 24 24">
-                                        <path d="M0 0h24v24H0z" fill="none" />
-                                        <g fill="none" stroke="currentColor" stroke-linecap="round"
-                                            stroke-linejoin="round" stroke-width="2.5">
-                                            <path fill="currentColor"
-                                                d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2H5a2 2 0 0 1 -2 -2Z"
-                                                opacity=".2" stroke="none" />
-                                            <path
-                                                d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2H5a2 2 0 0 1 -2 -2Z" />
-                                            <path d="M7 17v3l3 -3" />
-                                            <path d="m13 6 -3 3h3l-3 3" />
-                                        </g>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 style="font-size: 1rem; font-weight: 700;">First Responder</h4>
-                                    <span class="badge badge-success"
-                                        style="margin-top: 0.25rem; display: inline-block;">Unlocked</span>
-                                </div>
-                            </div>
-                            <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4;">
-                                Reported an urgent infrastructure issue that was successfully resolved within 24 hours.
-                            </p>
-                            <span style="font-size: 0.7rem; color: var(--text-muted);">Earned on Sep 15, 2026</span>
-                        </div>
-
-                        <!-- Badge Card 4 (Locked Milestone) -->
-                        <div class="content-card"
-                            style="display: flex; flex-direction: column; align-items: text-start; gap: 0.75rem; opacity: 0.6; border-left: 4px solid var(--slate-400);">
-                            <div style="display: flex; align-items: center; gap: 0.75rem;">
-                                <div
-                                    style="font-size: 2rem; background: var(--slate-200); padding: 0.5rem; border-radius: var(--radius-md);">
-                                    🏆
-                                </div>
-                                <div>
-                                    <h4 style="font-size: 1rem; font-weight: 700;">City Ambassador</h4>
-                                    <span class="badge badge-secondary"
-                                        style="margin-top: 0.25rem; display: inline-block;">Locked</span>
-                                </div>
-                            </div>
-                            <p style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.4;">
-                                Reach 50 upvoted community submissions and maintain an active resolver streak for 3
-                                months.
-                            </p>
-                            <span style="font-size: 0.7rem; color: var(--text-muted);">Progress: 45 / 50 Upvotes</span>
-                        </div>
-
-                    </div>
+                    <span class="impact-subtitle">Sample score · 340 points</span>
                 </div>
-            </div>
-
+                <div class="achievement-grid">
+                    <article class="achievement-card earned">
+                        <div class="achievement-icon" aria-hidden="true">
+                            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 3v5c0 4.7-3 8-7 10-4-2-7-5.3-7-10V6l7-3z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4" />
+                            </svg>
+                        </div>
+                        <div class="achievement-copy">
+                            <div class="achievement-title-row"><h3>Community Guardian</h3><span class="badge badge-success">Sample earned</span></div>
+                            <p>Contribute to neighborhood safety and infrastructure awareness.</p>
+                            <span class="achievement-footnote">Example milestone · 2 Oct 2026</span>
+                        </div>
+                    </article>
+                    <article class="achievement-card earned">
+                        <div class="achievement-icon" aria-hidden="true">
+                            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                <circle cx="10.8" cy="10.8" r="6.8" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m16 16 5 5M8 11l2 2 4-4" />
+                            </svg>
+                        </div>
+                        <div class="achievement-copy">
+                            <div class="achievement-title-row"><h3>Neighborhood Spotter</h3><span class="badge badge-success">Sample earned</span></div>
+                            <p>Document public-space issues with useful details and location context.</p>
+                            <span class="achievement-footnote">Example milestone · 29 Sep 2026</span>
+                        </div>
+                    </article>
+                    <article class="achievement-card earned">
+                        <div class="achievement-icon" aria-hidden="true">
+                            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 5h16v11H8l-4 4V5z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m10 9-2 2 2 2m4-4 2 2-2 2" />
+                            </svg>
+                        </div>
+                        <div class="achievement-copy">
+                            <div class="achievement-title-row"><h3>First Responder</h3><span class="badge badge-success">Sample earned</span></div>
+                            <p>Help bring attention to an urgent report that receives a timely response.</p>
+                            <span class="achievement-footnote">Example milestone · 15 Sep 2026</span>
+                        </div>
+                    </article>
+                    <article class="achievement-card locked">
+                        <div class="achievement-icon" aria-hidden="true">
+                            <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M7 10V7a5 5 0 0110 0v3m-11 0h12v10H6V10z" />
+                            </svg>
+                        </div>
+                        <div class="achievement-copy">
+                            <div class="achievement-title-row"><h3>City Ambassador</h3><span class="badge badge-secondary">Example goal</span></div>
+                            <p>A proposed milestone for sustained community participation over time.</p>
+                            <span class="achievement-footnote">Example progress · 45 of 50 confirmations</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
         </div>
     </main>
 
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p><span class="footer-brand">CityWatch</span> · Better streets start with speaking up.</p>
+            <p>Sample civic experience</p>
+        </div>
+    </footer>
     <script src="js/script.js"></script>
     <script src="js/dashboard.js"></script>
 </body>

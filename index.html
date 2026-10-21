@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CityWatch - Civic Issue Reporting Platform</title>
     <link rel="stylesheet" href="style/styles.css">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -14,7 +13,7 @@
     <header class="site-header">
         <div class="container header-content">
             <!-- Brand Logo -->
-            <a href="#" class="brand-logo">
+            <a href="index.html" class="brand-logo" aria-label="CityWatch home">
                 <div class="brand-icon">
                     <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
                         viewBox="0 0 24 24">
@@ -40,9 +39,9 @@
 
             <div class="header-actions">
                 <!-- DEFAULT (GUEST) HEADER ACTIONS -->
-                <nav class="nav-links">
-                    <a href="#" class="nav-link active">Issues</a>
-                    <a href="#" class="nav-link">Directory</a>
+                <nav class="nav-links desktop-only" aria-label="Primary navigation">
+                    <a href="#issueFeed" class="nav-link active">Community feed</a>
+                    <a href="dashboard.html" class="nav-link">My dashboard</a>
                     <a href="signin.html" class="nav-link">Log In</a>
                 </nav>
                 <a href="signup.html" class="btn-register desktop-only">Register</a>
@@ -82,7 +81,7 @@
                         </svg>
                     </button>
 
-                    <a href="logout.html" class="btn-logout desktop-only">Logout</a>
+                    <a href="signin.html" class="btn-logout desktop-only">Logout</a>
                 </div>
                 -->
 
@@ -105,8 +104,8 @@
         <!-- Mobile Dropdown Navigation Menu -->
         <div id="mobileNavMenu" class="mobile-nav-menu">
             <nav class="mobile-nav-links">
-                <a href="#" class="mobile-nav-link active">Issues</a>
-                <a href="#" class="mobile-nav-link">Directory</a>
+                <a href="#issueFeed" class="mobile-nav-link active">Community feed</a>
+                <a href="dashboard.html" class="mobile-nav-link">My dashboard</a>
                 <a href="signin.html" class="mobile-nav-link">Log In</a>
                 <a href="signup.html" class="btn-register mobile-register-btn">Register</a>
             </nav>
@@ -128,24 +127,45 @@
             </div>
         </div>
 
-        <section class="hero-section">
-            <div>
-                <span class="hero-subtitle">COMMUNITY PULSE</span>
-                <h1 class="hero-title">Issues near you</h1>
-                <p class="hero-description">See what your neighbors are reporting and help authorities fix
-                    these issues.</p>
-            </div>
-
-            <button id="openReportModalBtn" class="btn-report">
+        <section class="hero-section" aria-labelledby="heroTitle">
+            <div class="hero-copy">
+                <span class="hero-subtitle">A clearer view of your neighborhood</span>
+                <h1 class="hero-title" id="heroTitle">Better streets begin with being heard.</h1>
+                <p class="hero-description">CityWatch brings local infrastructure concerns into one place, so neighbors can document what needs attention and follow the path toward a fix.</p>
+                <div class="hero-actions">
+                    <button id="openReportModalBtn" class="btn-report">
                 <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
                     viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                 </svg>
-                Report New Issue
-            </button>
+                        Report an issue
+                    </button>
+                    <a class="hero-secondary-link" href="#issueFeed">Explore community reports</a>
+                </div>
+            </div>
+            <figure class="hero-visual">
+                <img src="images/city-street.jpg"
+                    alt="Illustrative Amsterdam neighborhood street, not a photograph of a CityWatch report" fetchpriority="high">
+                <figcaption>Illustrative neighborhood street · sample experience</figcaption>
+            </figure>
         </section>
 
-        <section class="toolbar-section">
+        <p class="sample-note">This is a demonstration feed. Sample reports, names, counts, and status updates are not live municipal data.</p>
+        <section class="impact-strip" aria-label="Sample community impact">
+            <div class="impact-stat"><strong>03</strong><span>reports in this sample feed</span></div>
+            <div class="impact-stat"><strong>01</strong><span>sample report marked resolved</span></div>
+            <div class="impact-stat"><strong>42</strong><span>sample community confirmations</span></div>
+        </section>
+
+        <section class="feed-heading" id="issueFeed">
+            <div>
+                <span class="hero-subtitle">Community reports · sample content</span>
+                <h2>See what needs attention</h2>
+                <p>Browse sample neighborhood reports and add your confirmation.</p>
+            </div>
+        </section>
+
+        <section class="toolbar-section" aria-label="Filter reports">
             <div class="status-tabs">
                 <button class="status-tab active" data-status="all">All</button>
                 <button class="status-tab" data-status="pending">Pending</button>
@@ -162,7 +182,7 @@
                             <option value="Roads">Roads</option>
                             <option value="Water">Water</option>
                             <option value="Waste">Waste</option>
-                            <option value="Parks">Power</option>
+                            <option value="Parks">Parks</option>
                         </select>
                         <div class="select-icon">
                             <svg style="width: 1rem; height: 1rem;" fill="currentColor" viewBox="0 0 20 20">
@@ -176,7 +196,7 @@
         </section>
 
         <div class="cards-header-info">
-            <span id="issuesCount" class="issues-count">3 public issues</span>
+            <span id="issuesCount" class="issues-count">3 sample reports</span>
 
             <div class="sort-group">
                 <span>Sort:</span>
@@ -188,21 +208,15 @@
             </div>
         </div>
 
-        <div id="issuesContainer" class="issues-list">
+        <div id="issuesContainer" class="issues-list" aria-live="polite">
 
             <!-- Issue Card 1 -->
             <article class="issue-card" data-id="issue-1" data-status="in progress" data-category="Roads"
                 data-timestamp="1728140400" data-upvotes="14">
                 <div class="photo-placeholder-bg">
-                    <div class="photo-icon-circle">
-                        <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                    </div>
-                    <span class="photo-text">PHOTO PLACEHOLDER</span>
+                    <img class="report-photo" src="images/pothole.jpg"
+                        alt="Illustrative photograph of a pothole, not evidence of this sample report" loading="lazy">
+                    <span class="photo-text">Illustrative image · sample report</span>
                 </div>
 
                 <div class="card-details">
@@ -225,7 +239,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                2 hours ago
+                                Sample report · 2 Oct 2024
                             </span>
                         </div>
 
@@ -265,14 +279,14 @@
                             <span class="upvote-count">14</span>
                         </button>
 
-                        <button class="comments-btn">
+                        <span class="comments-btn" aria-label="12 sample comments">
                             <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                             </svg>
                             12 comments
-                        </button>
+                        </span>
                     </div>
                 </div>
             </article>
@@ -281,15 +295,9 @@
             <article class="issue-card" data-id="issue-2" data-status="pending" data-category="Water"
                 data-timestamp="1728129600" data-upvotes="6">
                 <div class="photo-placeholder-bg">
-                    <div class="photo-icon-circle">
-                        <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                    </div>
-                    <span class="photo-text">PHOTO PLACEHOLDER</span>
+                    <img class="report-photo" src="images/water-leak.jpg"
+                        alt="Illustrative photograph of a marked water-pipe leak location, not evidence of this sample report" loading="lazy">
+                    <span class="photo-text">Illustrative image · sample report</span>
                 </div>
 
                 <div class="card-details">
@@ -313,7 +321,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-                                5 hours ago
+                                Sample report · 2 Oct 2024
                             </span>
                         </div>
 
@@ -353,14 +361,14 @@
                             <span class="upvote-count">6</span>
                         </button>
 
-                        <button class="comments-btn">
+                        <span class="comments-btn" aria-label="8 sample comments">
                             <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                             </svg>
                             8 comments
-                        </button>
+                        </span>
                     </div>
                 </div>
             </article>
@@ -369,15 +377,9 @@
             <article class="issue-card" data-id="issue-3" data-status="resolved" data-category="Waste"
                 data-timestamp="1728054000" data-upvotes="22">
                 <div class="photo-placeholder-bg">
-                    <div class="photo-icon-circle">
-                        <svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" stroke-width="2"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                    </div>
-                    <span class="photo-text">PHOTO PLACEHOLDER</span>
+                    <img class="report-photo" src="images/street-waste.jpg"
+                        alt="Illustrative photograph of street waste collection, not evidence of this sample report" loading="lazy">
+                    <span class="photo-text">Illustrative image · sample report</span>
                 </div>
 
                 <div class="card-details">
@@ -440,14 +442,14 @@
                             <span class="upvote-count">22</span>
                         </button>
 
-                        <button class="comments-btn">
+                        <span class="comments-btn" aria-label="5 sample comments">
                             <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" stroke-width="2"
                                 viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                             </svg>
                             5 comments
-                        </button>
+                        </span>
                     </div>
                 </div>
             </article>
@@ -466,11 +468,11 @@
         </div>
     </main>
 
-    <div id="reportModal" class="modal-backdrop">
-        <div class="modal-container">
+    <div id="reportModal" class="modal-backdrop" aria-hidden="true">
+        <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="reportModalTitle">
             <div class="modal-header">
-                <h3>Report a Community Issue</h3>
-                <button id="closeReportModalBtn" class="modal-close-btn">
+                <h3 id="reportModalTitle">Report a community issue</h3>
+                <button id="closeReportModalBtn" class="modal-close-btn" type="button" aria-label="Close report form">
                     <svg style="width: 1.5rem; height: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M6 18L18 6M6 6l12 12" />
@@ -480,38 +482,50 @@
 
             <form id="issueUploadForm" action="#" method="POST" enctype="multipart/form-data" class="modal-form">
                 <div class="form-group">
-                    <label class="form-label">Issue Title</label>
-                    <input type="text" name="title" required placeholder="e.g. Broken street light, Pothole"
+                    <label for="reportTitle" class="form-label">Issue title</label>
+                    <input id="reportTitle" type="text" name="title" required placeholder="e.g. Broken street light, pothole"
                         class="form-input">
                 </div>
 
                 <div class="form-grid">
                     <div class="form-group">
-                        <label class="form-label">Category</label>
-                        <select name="category" required class="form-select">
+                        <label for="reportCategory" class="form-label">Category</label>
+                        <select id="reportCategory" name="category" required class="form-select">
                             <option value="Roads">Roads</option>
                             <option value="Water">Water</option>
                             <option value="Waste">Waste</option>
                             <option value="Parks">Parks</option>
                         </select>
                     </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Location</label>
-                        <input type="text" name="location" required placeholder="Street address or landmark"
-                            class="form-input">
-                    </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Description</label>
-                    <textarea name="description" rows="3" required
+                    <label for="locationInput" class="form-label">Location</label>
+                    <div class="location-input-group">
+                        <input id="locationInput" type="text" name="location" required
+                            placeholder="Street address or landmark" class="form-input">
+                        <button type="button" id="detectLocationBtn" class="btn-detect-location">
+                            Use my location
+                        </button>
+                    </div>
+                    <div id="modalMap" class="modal-map-container" aria-label="Map to choose the issue location">
+                        <span id="mapUnavailableNote">Map preview unavailable · enter an address manually</span>
+                    </div>
+                    <p id="locationStatus" class="form-hint" role="status" aria-live="polite"></p>
+                    <p class="form-hint">Map selection requires a configured Google Maps API key. You can still enter an address manually.</p>
+                    <input type="hidden" id="latitudeInput" name="latitude">
+                    <input type="hidden" id="longitudeInput" name="longitude">
+                </div>
+
+                <div class="form-group">
+                    <label for="reportDescription" class="form-label">Description</label>
+                    <textarea id="reportDescription" name="description" rows="3" required
                         placeholder="Provide details to help local teams fix the issue..."
                         class="form-textarea"></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Photo Upload</label>
+                    <label for="file-upload" class="form-label">Photo upload</label>
                     <div class="file-upload-box">
                         <div class="upload-content">
                             <svg class="upload-icon" stroke="currentColor" fill="none" viewBox="0 0 48 48">
@@ -519,17 +533,17 @@
                                     d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8"
                                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
-                            <div style="font-size: 0.875rem; margin-top: 0.25rem;">
-                                <span style="font-weight: 500; color: var(--cityblue-600);">Upload a file</span> or drag
-                                and drop
+                            <div class="upload-text-main">
+                                <span class="upload-link-text">Choose a photo</span> or drag and drop
                             </div>
-                            <p style="font-size: 0.75rem; color: var(--slate-400); margin-top: 0.25rem;">PNG, JPG up to
-                                10MB</p>
+                            <p class="upload-text-sub">JPG or PNG · up to 10 MB · illustrative preview only</p>
                         </div>
                         <input id="file-upload" name="image" type="file" accept="image/*" class="file-input-hidden">
                     </div>
+                    <img id="reportImagePreview" class="image-preview" alt="Selected report photo preview">
                 </div>
 
+                <p id="reportFormMessage" class="report-form-message" role="status" aria-live="polite"></p>
                 <div class="modal-actions">
                     <button type="button" id="cancelReportModalBtn" class="btn-cancel">Cancel</button>
                     <button type="submit" class="btn-submit">Submit Issue</button>
@@ -545,6 +559,33 @@
             <p>&copy; 2025 CityWatch</p>
         </div>
     </footer>
+
+    <script>
+        window.citywatchMapConfig = window.citywatchMapConfig || {};
+        window.citywatchMapConfig.googleMapsApiKey = window.citywatchMapConfig.googleMapsApiKey || "";
+    </script>
+    <script>
+        (function () {
+            const apiKey = window.citywatchMapConfig && window.citywatchMapConfig.googleMapsApiKey;
+            if (!apiKey) return;
+
+            if (document.querySelector('script[data-citywatch-maps="true"]')) return;
+
+            const script = document.createElement('script');
+            script.src = 'https://maps.googleapis.com/maps/api/js?key=' + encodeURIComponent(apiKey);
+            script.async = true;
+            script.defer = true;
+            script.dataset.citywatchMaps = 'true';
+            script.addEventListener('load', function () {
+                window.dispatchEvent(new Event('citywatchmapsready'));
+            }, { once: true });
+            script.addEventListener('error', function () {
+                const note = document.getElementById('mapUnavailableNote');
+                if (note) note.textContent = 'Map could not be loaded · enter an address manually';
+            }, { once: true });
+            document.head.appendChild(script);
+        })();
+    </script>
     <script src="js/script.js"></script>
 </body>
 

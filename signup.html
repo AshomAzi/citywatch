@@ -7,7 +7,6 @@
     <title>Create an Account - CityWatch</title>
     <link rel="stylesheet" href="style/signup.css">
     <link rel="stylesheet" href="style/styles.css">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -27,7 +26,7 @@
 
             <div class="header-actions">
                 <nav class="nav-links">
-                    <a href="index.html" class="nav-link">Issues</a>
+                    <a href="index.html#issueFeed" class="nav-link">Community feed</a>
                     <a href="signin.html" class="nav-link">Log In</a>
                 </nav>
 
@@ -52,9 +51,10 @@
         <div class="auth-card">
             <div class="auth-header">
                 <h2>Join Your Community</h2>
-                <p>Register to report civic issues and keep track of resolutions in your area.</p>
+                <p>Create an account to take part in your local civic community.</p>
             </div>
 
+            <p id="registerStatus" class="auth-message" role="status" aria-live="polite">Account registration is not connected in this static demo. Your details will not be saved.</p>
             <form id="registerForm" class="auth-form" novalidate>
                 <div class="form-row">
                     <div class="form-group">
@@ -105,8 +105,7 @@
                 <div class="form-group checkbox-group">
                     <label class="checkbox-label">
                         <input type="checkbox" id="terms" name="terms" required>
-                        <span>I agree to the <a href="#" class="auth-link">Terms of Service</a> and <a href="#"
-                                class="auth-link">Privacy Policy</a></span>
+                        <span>I understand this demo does not create an account or store my information.</span>
                     </label>
                     <span class="error-msg" id="termsError"></span>
                 </div>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In - CityWatch</title>
     <link rel="stylesheet" href="style/signin.css">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style/styles.css">
 </head>
 
 <body>
@@ -26,7 +26,7 @@
 
             <div class="header-actions">
                 <nav class="nav-links">
-                    <a href="index.html" class="nav-link">Issues</a>
+                    <a href="index.html#issueFeed" class="nav-link">Community feed</a>
                     <a href="signup.html" class="nav-link">Register</a>
                 </nav>
 
@@ -48,8 +48,9 @@
         <div class="auth-card">
             <div class="auth-header">
                 <h2>Welcome Back</h2>
-                <p>Sign in to track reported issues and access your local dashboard.</p>
+                <p>Sign in to track the issues that matter to your neighborhood.</p>
             </div>
+            <p id="loginStatus" class="auth-message" role="status" aria-live="polite">Authentication is not connected in this static demo. Do not enter a real password.</p>
 
             <!-- Global / Backend Messages Container -->
             <div id="messagesContainer" class="messages-container" style="display: none;">
@@ -67,7 +68,7 @@
                 <div class="form-group">
                     <div class="label-row">
                         <label for="password" class="form-label">Password</label>
-                        <a href="#" class="auth-link text-sm">Forgot password?</a>
+                        <span class="text-sm" aria-label="Password reset is not available in this demo">Password reset unavailable</span>
                     </div>
                     <input type="password" id="password" name="password" class="form-input" placeholder="Enter your password" required>
                     <span class="error-msg" id="passwordError"></span>

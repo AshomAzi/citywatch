@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
         username: document.getElementById("usernameError"),
         password: document.getElementById("passwordError"),
     };
+    const loginStatus = document.getElementById("loginStatus");
 
     // Theme Elements
     const themeToggleBtn = document.getElementById("themeToggleBtn");
@@ -69,6 +70,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!isValid) {
             e.preventDefault();
+            return;
+        }
+
+        e.preventDefault();
+        if (loginStatus) {
+            loginStatus.textContent = "Sign-in is unavailable because no authentication service is connected. Your credentials were not sent.";
+            loginStatus.classList.add("auth-message-error");
         }
     });
 });
