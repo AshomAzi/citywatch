@@ -26,15 +26,19 @@
 
             <!-- Desktop Search Input -->
             <div class="header-search">
-                <div class="search-wrapper">
-                    <div class="search-icon-left">
-                        <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
+                <form action="su" method="post">
+                    <div class="search-wrapper">
+                        <div class="search-icon-left">
+                            <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+                        <input type="text" id="searchInput" placeholder="Search issues, locations..."
+                            class="search-input">
                     </div>
-                    <input type="text" id="searchInput" placeholder="Search issues, locations..." class="search-input">
-                </div>
+                </form>
             </div>
 
             <div class="header-actions">
@@ -182,7 +186,7 @@
                             <option value="Roads">Roads</option>
                             <option value="Water">Water</option>
                             <option value="Waste">Waste</option>
-                            <option value="Parks">Parks</option>
+                            <option value="Power">Power/Electricity</option>
                         </select>
                         <div class="select-icon">
                             <svg style="width: 1rem; height: 1rem;" fill="currentColor" viewBox="0 0 20 20">
@@ -494,7 +498,7 @@
                             <option value="Roads">Roads</option>
                             <option value="Water">Water</option>
                             <option value="Waste">Waste</option>
-                            <option value="Parks">Parks</option>
+                            <option value="Power">Power/Electricity</option>
                         </select>
                     </div>
                 </div>
